@@ -1,1 +1,2 @@
-// file to edit the form and perform all requirements from assignment
+// get references to interactive elements
+const theForm = document.getElementById("myForm");
