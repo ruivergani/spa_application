@@ -7,6 +7,7 @@
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
     font-size: 1.6rem;
+    letter-spacing: 0.5px;
 }
 html,
 body{
@@ -58,9 +59,9 @@ header{
     top: 0;
     left: 0;
     width: 100%;
+    height: 8rem;
     position: relative;
     background-color: var(--grey-400);
-    height: 8rem;
     display: flex;
     z-index: 10000;
     transition: all 0.3s;
@@ -75,4 +76,93 @@ header .container{
 header .container nav{
     display: flex;
     align-items: center;
+}
+
+/* ===  Drink Form === */
+.monkey-bar{
+    width: 100%;
+}
+ .monkey-bar .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.monkey-bar .container .drink-selection{
+    width: 100%;
+    max-width: 76.8rem;
+    background-color: var(--grey-200);
+    padding: 100px 5rem 50px 3.2rem;
+}
+.monkey-bar .container .drink-selection h1{
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 112%;
+    color: #33303E;
+    padding-bottom: 6rem;
+}
+.inputs p{
+    padding-bottom: 2rem;
+    font-weight: 600;
+    font-size: 18px;
+}
+span{
+    color: var(--grey-400);
+}
+.inputs fieldset{
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+}
+.inputs fieldset legend{
+    font-weight: 600;
+    font-size: 17px;
+}
+.inputs fieldset label{
+    padding-left: 10px;
+}
+input[value="milkshake"]{
+    margin-left: 30px;
+}
+
+input[type=text], select, option {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+label{
+    display: inline-block;
+    font-weight: 500;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 17px; 
+}
+div .buttons input{
+    padding: 15px;
+    margin-top: 20px;
+    margin-right: 10px;
+    background-color: var(--grey-300);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+div .buttons input:hover{
+    background-color: var(--grey-400);
+}
+.monkey-bar .container .order-selection{
+    width: 100%;
+    max-width: 49rem;
+    background-color: var(--grey-300);
+    padding: 10rem 3.2rem 5rem 3.2rem;
 }

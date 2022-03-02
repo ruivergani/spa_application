@@ -15,7 +15,10 @@
     <link rel="shortcut icon" type="image/png" href="./favicon.svg">
 
     <!-- Google Fonts -->
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
     <!-- MAIN css -->
     <link rel="stylesheet" href="./css/style.css">
 
@@ -38,15 +41,15 @@
         </div>
     </header>
 
-    <section class="order-body">
+    <section class="monkey-bar">
         <div class="container">
-            <section class="drink_selection">
+            <section class="drink-selection">
                 <h1>Monkey Bar</h1>
                 <div class="inputs">
                     <p>Choose your Drink: </p>
                     <div class="main-form">
                         <form action="" method="get">
-                            <p>Order #123</p> <!-- Give an id (automatic generated to a form)-->
+                            <p>Order <span>#123</span></p> <!-- Give an id (automatic generated to a form)-->
                             <!-- Drink Type -->
                             <fieldset>
                                 <legend>Type:</legend>
@@ -73,8 +76,8 @@
                                 <option value="Chocolate">Chocolate</option>
                                 <option value="White Chocolate">White Chocolate</option>
                             </datalist>
-                            <label for="ingredients">Ingredients:</label>
-                            <input type="text" list="ingredients-list" id="ingredientes" name="ingredients" required> <!-- Min one selected (required)-->
+                            <label for="ingredients">Ingredients:</label> <br/>
+                            <input type="text" list="ingredients-list" id="ingredientes" name="ingredients" placeholder="Select a value" required> <!-- Min one selected (required)-->
                             <br/>
                             <!-- Bases for smoothie -->
                             <label for="base-smoothie">Bases for smoothie:</label> <br/>
@@ -101,10 +104,13 @@
                                 <option value="malt">Malt</option>
                             </select>
                             <br/>
-                            <!-- Buttons -->
-                            <input type="submit" value="Add to order" id="add-order">
-                            <input type="submit" value="Save favourite" id="save-favourite">
-                            <input type="submit" value="Order favourite" id="order-favourite">
+                            <div class="buttons">
+                                <!-- Buttons -->
+                                <input type="submit" value="Add to order" id="add-order">
+                                <input type="submit" value="Save favourite" id="save-favourite">
+                                <input type="submit" value="Order favourite" id="order-favourite">
+                            </div>
+                            
                         </form>
                     </div>
                 </div>
