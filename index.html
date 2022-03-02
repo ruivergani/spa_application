@@ -53,10 +53,15 @@
                             <!-- Drink Type -->
                             <fieldset>
                                 <legend>Type:</legend>
-                                <input type="radio" id="smoothie" name="drinkType" value="smoothie" checked>
-                                <label for="smoothie">Smoothie</label>
-                                <input type="radio" id="milkshake" name="drinkType" value="milkshake">
-                                <label for="milkshake">Milkshake</label>
+                                <p>
+                                    <input type="radio" id="smoothie" name="drinkType" value="smoothie" checked>
+                                    <label for="smoothie">Smoothie</label>
+                                </p>
+                                <p>
+                                    <input type="radio" id="milkshake" name="drinkType" value="milkshake">
+                                    <label for="milkshake">Milkshake</label>
+                                </p>
+                                
                             </fieldset>
                             <!-- Size -->
                             <label for="size">Size:</label> <br/>
@@ -76,9 +81,11 @@
                                 <option value="Chocolate">Chocolate</option>
                                 <option value="White Chocolate">White Chocolate</option>
                             </datalist>
-                            <label for="ingredients">Ingredients:</label> <br/>
-                            <input type="text" list="ingredients-list" id="ingredientes" name="ingredients" placeholder="Select a value" required> <!-- Min one selected (required)-->
-                            <br/>
+                            <p>
+                                <label for="ingredients">Ingredients:</label> <br/>
+                                <input type="text" list="ingredients-list" id="ingredientes" name="ingredients" placeholder="Select a value" required> <!-- Min one selected (required)-->
+                                <br/>
+                            </p>
                             <!-- Bases for smoothie -->
                             <label for="base-smoothie">Bases for smoothie:</label> <br/>
                             <select id="base-smoothie" name="base-smoothie" required>
@@ -106,9 +113,9 @@
                             <br/>
                             <div class="buttons">
                                 <!-- Buttons -->
-                                <input type="submit" value="Add to order" id="add-order">
-                                <input type="submit" value="Save favourite" id="save-favourite">
-                                <input type="submit" value="Order favourite" id="order-favourite">
+                                <input type="submit" value="Add to order" id="add-order" name="add-order">
+                                <input type="submit" value="Save favourite" id="save-favourite" name="save-favourite">
+                                <input type="submit" value="Order favourite" id="order-favourite" name="order-favourite">
                             </div>
                             
                         </form>
@@ -118,6 +125,9 @@
             <section class="order-selection">
                 <h2>Order Receipt</h2>
                 <p>Current Drinks Details: </p>
+                <div class="output-area">
+                    
+                </div>
             </section>
         </div>
     </section>
