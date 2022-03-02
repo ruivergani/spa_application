@@ -41,10 +41,77 @@
     <section class="order-body">
         <div class="container">
             <section class="drink_selection">
-
+                <h1>Monkey Bar</h1>
+                <div class="inputs">
+                    <p>Choose your Drink: </p>
+                    <div class="main-form">
+                        <form action="" method="get">
+                            <p>Order #123</p> <!-- Give an id (automatic generated to a form)-->
+                            <!-- Drink Type -->
+                            <fieldset>
+                                <legend>Type:</legend>
+                                <input type="radio" id="smoothie" name="drinkType" value="smoothie" checked>
+                                <label for="smoothie">Smoothie</label>
+                                <input type="radio" id="milkshake" name="drinkType" value="milkshake">
+                                <label for="milkshake">Milkshake</label>
+                            </fieldset>
+                            <!-- Size -->
+                            <label for="size">Size:</label> <br/>
+                            <select id="size" name="size">
+                                <option value="small">Small - £2.45</option>
+                                <option value="medium" selected>Medium - £2.95</option> <!-- defaul option -->
+                                <option value="large">Large - £3.45</option>
+                            </select>
+                            <br/>
+                            <!-- Ingredients -->
+                            <datalist id="ingredients-list">
+                                <option value="Banana">Banana</option>
+                                <option value="Strawberries">Strawberries</option>
+                                <option value="Raspberries">Raspberries</option>
+                                <option value="Blueberries">Blueberries</option>
+                                <option value="Mango">Mango</option>
+                                <option value="Chocolate">Chocolate</option>
+                                <option value="White Chocolate">White Chocolate</option>
+                            </datalist>
+                            <label for="ingredients">Ingredients:</label>
+                            <input type="text" list="ingredients-list" id="ingredientes" name="ingredients" required> <!-- Min one selected (required)-->
+                            <br/>
+                            <!-- Bases for smoothie -->
+                            <label for="base-smoothie">Bases for smoothie:</label> <br/>
+                            <select id="base-smoothie" name="base-smoothie" required>
+                                <option value="orange">Orange Juice</option>
+                                <option value="apple" selected>Apple Juice</option> <!-- defaul option -->
+                            </select>
+                            <br/>
+                            <!-- Bases for milkshake -->
+                            <label for="base-milkshake">Bases for milkshake:</label> <br/>
+                            <select id="base-milkshake" name="base-milkshake" required>
+                                <option value="whole-milk">Whole Milk</option>
+                                <option value="semi-skimmed-milk" selected>Semi Skimmed Milk</option> <!-- defaul option -->
+                                <option value="coconut-milk">Coconut Milk</option>
+                                <option value="oat-milk">Oat Milk</option>
+                            </select>
+                            <br/>
+                            <!-- Extra options for milkshake -->
+                            <label for="extra">Extra Options:</label> <br/>
+                            <select id="extra" name="extra">
+                                <option value="chocolate-sprinkles">Chocolate Sprinkles</option>
+                                <option value="marshmallows">Marshmallows</option>
+                                <option value="cream">Cream</option>
+                                <option value="malt">Malt</option>
+                            </select>
+                            <br/>
+                            <!-- Buttons -->
+                            <input type="submit" value="Add to order" id="add-order">
+                            <input type="submit" value="Save favourite" id="save-favourite">
+                            <input type="submit" value="Order favourite" id="order-favourite">
+                        </form>
+                    </div>
+                </div>
             </section>
             <section class="order-selection">
-
+                <h2>Order Receipt</h2>
+                <p>Current Drinks Details: </p>
             </section>
         </div>
     </section>
