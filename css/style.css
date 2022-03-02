@@ -166,3 +166,17 @@ div .buttons input:hover{
     background-color: var(--grey-300);
     padding: 10rem 3.2rem 5rem 3.2rem;
 }
+.monkey-bar .container .order-selection{
+    color: white;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.monkey-bar .container .order-selection h2{
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 112%;
+    color: white;
+    padding-bottom: 6rem;
+}
