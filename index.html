@@ -54,11 +54,11 @@
                             <fieldset>
                                 <legend>Type:</legend>
                                 <p>
-                                    <input type="radio" id="smoothie" name="drinkType" value="smoothie" checked>
+                                    <input type="radio" id="smoothie" name="drink" value="smoothie" checked>
                                     <label for="smoothie">Smoothie</label>
                                 </p>
                                 <p>
-                                    <input type="radio" id="milkshake" name="drinkType" value="milkshake">
+                                    <input type="radio" id="milkshake" name="drink" value="milkshake">
                                     <label for="milkshake">Milkshake</label>
                                 </p>
                                 
@@ -124,9 +124,14 @@
             </section>
             <section class="order-selection">
                 <h2>Order Receipt</h2>
-                <p>Current Drinks Details: </p>
+                <p class="b">Current Drinks Details: </p>
                 <div class="output-area">
-                    
+                    <p id="drink-details">Small smoothie: banana, strawberries with apple juice.</p>
+                    <div class="current-price">
+                        <p>Price: </p>
+                        <p id="current-drink-price">£10.90</p>
+                    </div>
+                    <img src="./img/line.png" alt="line">
                 </div>
             </section>
         </div>
