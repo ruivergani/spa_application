@@ -200,3 +200,21 @@ div .buttons input:hover{
     padding-top: 50px;
     padding-bottom: 50px;
 }
+.output-area .order-status{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.output-area .order-status p#order-details{
+    width: 100%;
+    max-width: 70%;
+}
+.prices{
+    background-color:#183C0A;
+    padding: 0;
+    margin-top: 50px;
+    border-radius: 10px;
+    padding: 0px 20px 30px 20px;
+    display: flex;
+    justify-content: space-between;
+}
