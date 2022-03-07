@@ -34,11 +34,29 @@ function PlaceOrder(Event){
         theForm.reset();
     }
 }
+function addOrder(Event){
+    if(theForm.checkValidity()){
+        Event.preventDefault();
+        console.log("Added to Order.");
+    }
+}
+function saveFavourite(Event){
+    if(theForm.checkValidity()){
+        Event.preventDefault();
+        console.log("Save Favourite");
+    } 
+}
+function orderFavourite(Event){
+    if(theForm.checkValidity()){
+        Event.preventDefault();
+        console.log("Order Favourite");
+    }
+}
 
 // listen to events
-btnAddOrder.addEventListener('click', PlaceOrder);
-btnSaveFav.addEventListener('click', PlaceOrder);
-btnOrderFav.addEventListener('click', PlaceOrder);
+btnAddOrder.addEventListener('click', addOrder);
+btnSaveFav.addEventListener('click', saveFavourite);
+btnOrderFav.addEventListener('click', orderFavourite);
 btnPlaceOrder.addEventListener('click', PlaceOrder); // button place order
 
 
