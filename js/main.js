@@ -22,6 +22,12 @@ const outputItemPrice = document.getElementById('item-price'); // Display item p
 const outputSubtotalPrice = document.getElementById('subtotal-price'); // Total Price value
 const outputFinalMessage = document.getElementById('final-message'); // Final message
 
+const idNumber = document.getElementById('idNumber');
+// generate random id number
+let idNo = Math.ceil(Math.random()*10e7);
+idNumber.innerText = `${idNo}`;
+
+
 // read input
 
 // output values
