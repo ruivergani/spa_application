@@ -116,6 +116,7 @@
                                 <input type="submit" value="Add to order" id="add-order" name="add-order">
                                 <input type="submit" value="Save favourite" id="save-favourite" name="save-favourite">
                                 <input type="submit" value="Order favourite" id="order-favourite" name="order-favourite">
+                                <input id="place-order" type="submit" value="Place your Order"></input> <!-- Button to place the order (full details)-->
                             </div>
                             
                         </form>
@@ -145,11 +146,8 @@
                         <p>Subtotal (1 items)= </p><!-- display quantity of items added to order -->
                         <p id="subtotal-price">£ 20.50</p><!-- Display subtotal price -->
                     </div>
-                    <div class="place-order">
-                        <button id="place-order" type="submit">Place your order</button> <!-- Button to place the order (full details)-->
-                    </div>
                     <div class="final-message">
-                        <p id="final-message">Your order has been received, thumbs up from the restaurant!</p> <!-- Display message from btnPlaceOrder -->
+                        <p id="final-message"></p> <!-- Display message from btnPlaceOrder -->
                     </div>
                 </div>
             </section>
@@ -157,10 +155,6 @@
     </section>
 
     
-   
-        
-    <!-- Jquery / Main.js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script language="JavaScript" type="text/javascript" src="./js/main.js"></script>
 </body>
 </html>

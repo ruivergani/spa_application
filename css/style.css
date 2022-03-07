@@ -92,7 +92,7 @@ header .container nav{
     width: 100%;
     max-width: 76.8rem;
     background-color: var(--bg-light);
-    padding: 100px 5rem 50px 3.2rem;
+    padding: 7rem 3rem 5rem 3.2rem;
 }
 .monkey-bar .container .drink-selection h1{
     text-align: center;
@@ -163,7 +163,8 @@ div .buttons input:hover{
     width: 100%;
     max-width: 49rem;
     background-color: #1e6900e7;
-    padding: 10rem 3.2rem 10rem 3.2rem;
+    padding: 7rem 3.2rem 10rem 3.2rem;
+    height: 110.5rem;
 }
 .monkey-bar .container .order-selection{
     color: white;
