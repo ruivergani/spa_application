@@ -5,17 +5,11 @@ const txtSizeChoice = document.getElementById('size'); // select option (size of
 const txtIngredients = document.getElementsByName('ingredients'); // checkbox (at least 1)
 const txtBaseSmoothie = document.getElementById('base-smoothie'); // select option
 const txtBaseMilkshake = document.getElementById('base-milkshake'); // select option
-const txtExtraOption = document.getElementsByName('extra');
+const txtExtraOption = document.getElementsByName('extra'); // checkbox (can choose one or not)
 
 
-// add events to listen for
-txtDrinkChoice.forEach(item =>
-    item.addEventListener("change", checkDrinkChoice));
-txtSizeChoice.addEventListener("change", checkSizeChoice);
-txtIngredients.forEach(item => 
-    item.addEventListener("change", checkIngredients));
-txtBaseSmoothie.addEventListener("change", checkBaseSmoothie);
-txtBaseMilkshake.addEventListener("change", checkBaseMilkshake);
+
+
 
 // validate the checkbox > 1
 // $('div.checkbox-group.required :checkbox:checked').length > 0
@@ -72,8 +66,35 @@ function orderFavourite(Event){
         console.log("Order Favourite");
     }
 }
+function checkDrinkChoice(){
+    console.log("Check Drink Choice");
+}
+function checkSizeChoice(){
+    console.log("Check size choice");
+}
+function checkIngredients(){
+    console.log("Check ingredients");
+}
+function checkBaseSmoothie(){
+    console.log("Check Smoothie");
+}
+function checkBaseMilkshake(){
+    console.log("Check base milkshake");
+}
+function checkExtra(){
+    console.log("Check Extra");
+}
 
-
+// add events to listen for
+txtDrinkChoice.forEach(item =>
+    item.addEventListener("change", checkDrinkChoice));
+txtSizeChoice.addEventListener("change", checkSizeChoice);
+txtIngredients.forEach(item => 
+    item.addEventListener("change", checkIngredients));
+txtBaseSmoothie.addEventListener("change", checkBaseSmoothie);
+txtBaseMilkshake.addEventListener("change", checkBaseMilkshake);
+txtExtraOption.forEach(item =>
+    item.addEventListener("change", checkExtra));
 
 window.addEventListener('load', initialise);// executed when the window loads
 
