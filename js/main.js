@@ -8,9 +8,6 @@ const txtBaseMilkshake = document.getElementById('base-milkshake'); // select op
 const txtExtraOption = document.getElementsByName('extra'); // checkbox (can choose one or not)
 
 
-
-
-
 // validate the checkbox > 1
 // $('div.checkbox-group.required :checkbox:checked').length > 0
 
@@ -23,22 +20,16 @@ const btnPlaceOrder = document.getElementById('place-order');
 //output area
 const outputDrinkDetails = document.getElementById('drink-details'); //Small smoothie: banana, strawberries with apple juice.
 const outputCurrentPrice = document.getElementById('current-drink-price');
-
 const outputOrderDetails = document.getElementById('order-details'); // Display order details
 const outputItemPrice = document.getElementById('item-price'); // Display item price
-
 const outputSubtotalPrice = document.getElementById('subtotal-price'); // Total Price value
 const outputFinalMessage = document.getElementById('final-message'); // Final message
-
 const idNumber = document.getElementById('idNumber');
 // generate random id number
 let idNo = Math.ceil(Math.random()*10e7);
 idNumber.innerText = `${idNo}`;
 
 
-// read input
-
-// output values
 
 // perform functions
 function PlaceOrder(Event){
@@ -84,8 +75,11 @@ function checkBaseMilkshake(){
 function checkExtra(){
     console.log("Check Extra");
 }
+function initialise(){
+    console.log("Initialise");
+}
 
-// add events to listen for
+// add events to listen for checkbox, selection, input and radio buttons
 txtDrinkChoice.forEach(item =>
     item.addEventListener("change", checkDrinkChoice));
 txtSizeChoice.addEventListener("change", checkSizeChoice);
@@ -95,7 +89,6 @@ txtBaseSmoothie.addEventListener("change", checkBaseSmoothie);
 txtBaseMilkshake.addEventListener("change", checkBaseMilkshake);
 txtExtraOption.forEach(item =>
     item.addEventListener("change", checkExtra));
-
 window.addEventListener('load', initialise);// executed when the window loads
 
 // listen to events
