@@ -29,7 +29,9 @@ const idNumber = document.getElementById('idNumber');
 let idNo = Math.ceil(Math.random()*10e7);
 idNumber.innerText = `${idNo}`;
 
-
+// variables
+let sizeCost;
+let extraCost;
 
 // perform functions
 function PlaceOrder(Event){
