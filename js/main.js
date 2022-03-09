@@ -1,10 +1,24 @@
 // get references to interactive elements
 const theForm = document.getElementById('myForm');
-const txtDrinkChoice = document.getElementsByName('drink');
-const txtSizeChoice = document.getElementById('size');
-const txtBaseSmoothie = document.getElementById('base-smoothie');
-const txtBaseMilkshake = document.getElementById('base-milkshake');
-const txtExtraOption = document.getElementById('extra');
+const txtDrinkChoice = document.getElementsByName('drink'); // radio button (smoothie or milkshake)
+const txtSizeChoice = document.getElementById('size'); // select option (size of the drink)
+const txtIngredients = document.getElementsByName('ingredients'); // checkbox (at least 1)
+const txtBaseSmoothie = document.getElementById('base-smoothie'); // select option
+const txtBaseMilkshake = document.getElementById('base-milkshake'); // select option
+const txtExtraOption = document.getElementsByName('extra');
+
+
+// add events to listen for
+txtDrinkChoice.forEach(item =>
+    item.addEventListener("change", checkDrinkChoice));
+txtSizeChoice.addEventListener("change", checkSizeChoice);
+txtIngredients.forEach(item => 
+    item.addEventListener("change", checkIngredients));
+txtBaseSmoothie.addEventListener("change", checkBaseSmoothie);
+txtBaseMilkshake.addEventListener("change", checkBaseMilkshake);
+
+// validate the checkbox > 1
+// $('div.checkbox-group.required :checkbox:checked').length > 0
 
 //buttons
 const btnAddOrder = document.getElementById('add-order');
@@ -58,6 +72,10 @@ function orderFavourite(Event){
         console.log("Order Favourite");
     }
 }
+
+
+
+window.addEventListener('load', initialise);// executed when the window loads
 
 // listen to events
 btnAddOrder.addEventListener('click', addOrder);

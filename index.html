@@ -64,7 +64,7 @@
                                 
                             </fieldset>
                             <!-- Size -->
-                            <label for="size">Size:</label> <br/>
+                            <label for="size" required>Size:</label> <br/>
                             <select id="size" name="size">
                                 <option value="small">Small - £2.45</option>
                                 <option value="medium" selected>Medium - £2.95</option> <!-- defaul option -->
@@ -72,20 +72,27 @@
                             </select>
                             <br/>
                             <!-- Ingredients -->
-                            <datalist id="ingredients-list">
-                                <option value="Banana">Banana</option>
-                                <option value="Strawberries">Strawberries</option>
-                                <option value="Raspberries">Raspberries</option>
-                                <option value="Blueberries">Blueberries</option>
-                                <option value="Mango">Mango</option>
-                                <option value="Chocolate">Chocolate</option>
-                                <option value="White Chocolate">White Chocolate</option>
-                            </datalist>
-                            <p>
-                                <label for="ingredients">Ingredients:</label> <br/>
-                                <input type="text" list="ingredients-list" id="ingredientes" name="ingredients" placeholder="Select a value" required> <!-- Min one selected (required)-->
-                                <br/>
-                            </p>
+                            <div class="checkbox-group">
+                                <fieldset>
+                                    <legend>Ingredients:</legend>
+                                    <p>
+                                        <input type="checkbox" id="banana" name="ingredients" value="banana">
+                                        <label for="banana">Banana</label> <br/>
+                                        <input type="checkbox" id="strawberries" name="ingredients" value="strawberries">
+                                        <label for="strawberries">Strawberries</label><br/>
+                                        <input type="checkbox" id="blueberries" name="ingredients" value="blueberries">
+                                        <label for="blueberries">Blueberries</label><br/>
+                                        <input type="checkbox" id="mango" name="ingredients" value="mango">
+                                        <label for="mango">Mango</label><br/>
+                                        <input type="checkbox" id="chocolate" name="ingredients" value="chocolate">
+                                        <label for="chocolate">Chocolate</label><br/>
+                                        <input type="checkbox" id="white-chocolate" name="ingredients" value="white-chocolate">
+                                        <label for="white-chocolate">White Chocolate</label>
+                                    </p>
+                                </fieldset>
+                                
+                            </div>
+                            
                             <!-- Bases for smoothie -->
                             <label for="base-smoothie">Bases for smoothie:</label> <br/>
                             <select id="base-smoothie" name="base-smoothie" required>
@@ -103,13 +110,20 @@
                             </select>
                             <br/>
                             <!-- Extra options for milkshake -->
-                            <label for="extra">Extra Options:</label> <br/>
-                            <select id="extra" name="extra">
-                                <option value="chocolate-sprinkles">Chocolate Sprinkles</option>
-                                <option value="marshmallows">Marshmallows</option>
-                                <option value="cream">Cream</option>
-                                <option value="malt">Malt</option>
-                            </select>
+                            <fieldset>
+                                <legend>Extra Options:</legend>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="chocolate-sprinkles" name="extra" value="chocolate-sprinkles">
+                                    <label for="chocolate-sprinkles">Chocolate Sprinkles</label> <br/>
+                                    <input type="checkbox" id="marshmallows" name="extra" value="marshmallows">
+                                    <label for="marshmallows">Marshmallows</label> <br/>
+                                    <input type="checkbox" id="cream" name="extra" value="cream">
+                                    <label for="cream">Cream</label> <br/>
+                                    <input type="checkbox" id="malt" name="extra" value="malt">
+                                    <label for="malt">Malt</label> <br/>
+                                </div>
+                            </fieldset>
+                            
                             <br/>
                             <div class="buttons">
                                 <!-- Buttons -->

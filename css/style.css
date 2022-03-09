@@ -137,12 +137,20 @@ input[type=text], select, option {
     box-sizing: border-box;
     cursor: pointer;
 }
+fieldset{
+    margin-top: 20px;
+    letter-spacing: 1px;
+}
+legend{
+    padding: 0px 10px;
+}
 label{
     display: inline-block;
     font-weight: 500;
     margin-top: 20px;
     cursor: pointer;
     font-size: 17px; 
+    padding-left: 10px;
 }
 div .buttons input{
     padding: 15px;
