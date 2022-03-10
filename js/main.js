@@ -40,15 +40,20 @@ let extraCost = 0;
 // functions
 function checkDrinkChoice(){
     let checked = theForm.querySelector('input[name=drink]:checked');
+    let milkBases = document.getElementById("milk-bases");
+    let juiceBases = document.getElementById("juice-bases");
     outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`;
     if(this.value == "smoothie"){
         console.log("you choose smoothie");
-        // must select bases (apple juice or orange juice only - one only)
+        juiceBases.style.display = "block";
+        milkBases.style.display = "none";
     }
     else{
         console.log("you choose milkshake");
-        // must select one of the bases (whole milk, semi-skimmed milk, coconut milk or oat milk - one only)
+        milkBases.style.display = "block";
+        juiceBases.style.display = "none";
         // can also add extra options (50p each)
+        
     }
 }
 function checkSizeChoice(){
@@ -67,14 +72,13 @@ function checkSizeChoice(){
 }
 function checkIngredients(){
     if(this.checked){
-        outputDrinkIngredients.innerText += ` ${this.value.charAt(0).toUpperCase() + this.value.slice(1)}`;
+        outputDrinkIngredients.innerHTML += ` ${this.value.charAt(0).toUpperCase() + this.value.slice(1)}`;
     }
     else{
-        // remove text from the ingredients
+        outputDrinkIngredients.innerHTML = '';
     }
-    
-    
 }
+
 function checkBaseSmoothie(){
     console.log("Check Smoothie");
 }

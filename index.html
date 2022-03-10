@@ -54,11 +54,11 @@
                             <fieldset>
                                 <legend>Type:</legend>
                                 <p>
-                                    <input type="radio" id="smoothie" name="drink" value="smoothie">
+                                    <input type="radio" id="smoothie" name="drink" value="smoothie" required>
                                     <label for="smoothie">Smoothie</label>
                                 </p>
                                 <p>
-                                    <input type="radio" id="milkshake" name="drink" value="milkshake" checked>
+                                    <input type="radio" id="milkshake" name="drink" value="milkshake">
                                     <label for="milkshake">Milkshake</label>
                                 </p>
                                 
@@ -75,7 +75,7 @@
                                 <fieldset>
                                     <legend>Ingredients:</legend>
                                     <p>
-                                        <div class="checkbox-group required">
+                                        <div class="form-group">
                                             <input type="checkbox" id="banana" name="ingredients" value="banana">
                                             <label for="banana">Banana</label> <br/>
                                             <input type="checkbox" id="strawberries" name="ingredients" value="strawberries">
@@ -92,22 +92,25 @@
                                     </p>
                                 </fieldset>
                                 
-                            
-                            <!-- Bases for smoothie -->
-                            <label for="base-smoothie">Bases for smoothie:</label> <br/>
-                            <select id="base-smoothie" name="base-smoothie" required>
-                                <option value="orange">Orange Juice</option>
-                                <option value="apple" selected>Apple Juice</option> <!-- defaul option -->
-                            </select>
-                            <br/>
+                            <div id="juice-bases">
+                                <!-- Bases for smoothie -->
+                                <label for="base-smoothie">Juice Bases:</label> <br/>
+                                <select id="base-smoothie" name="base-smoothie" required>
+                                    <option value="orange">Orange Juice</option>
+                                    <option value="apple" selected>Apple Juice</option> <!-- defaul option -->
+                                </select>
+                                <br/>
+                            </div>
                             <!-- Bases for milkshake -->
-                            <label for="base-milkshake">Bases for milkshake:</label> <br/>
-                            <select id="base-milkshake" name="base-milkshake" required>
-                                <option value="whole-milk">Whole Milk</option>
-                                <option value="semi-skimmed-milk" selected>Semi Skimmed Milk</option> <!-- defaul option -->
-                                <option value="coconut-milk">Coconut Milk</option>
-                                <option value="oat-milk">Oat Milk</option>
-                            </select>
+                            <div id="milk-bases">
+                                <label for="base-milkshake">Milk Bases:</label> <br/>
+                                <select id="base-milkshake" name="base-milkshake" required>
+                                    <option value="whole-milk">Whole Milk</option>
+                                    <option value="semi-skimmed-milk" selected>Semi Skimmed Milk</option> <!-- defaul option -->
+                                    <option value="coconut-milk">Coconut Milk</option>
+                                    <option value="oat-milk">Oat Milk</option>
+                                </select>
+                            </div>
                             <br/>
                             <!-- Extra options for milkshake -->
                             <fieldset>
