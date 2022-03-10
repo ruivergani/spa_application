@@ -7,6 +7,10 @@ const txtBaseSmoothie = document.getElementById('base-smoothie'); // select opti
 const txtBaseMilkshake = document.getElementById('base-milkshake'); // select option
 const txtExtraOption = document.getElementsByName('extra'); // checkbox (can choose one or not)
 
+const milkBases = document.getElementById("milk-bases"); // div
+const juiceBases = document.getElementById("juice-bases"); //div
+const extra = document.getElementById("extra-options"); // div
+
 //buttons
 const btnAddOrder = document.getElementById('add-order');
 const btnSaveFav = document.getElementById('save-favourite');
@@ -36,22 +40,22 @@ idNumber.innerText = `${idNo}`;
 let sizeCost = 0;
 let extraCost = 0;
 
+// initialise none - to avoid user's mistake
+milkBases.style.display = "none";
+juiceBases.style.display = "none";
+extra.style.display = "none";
 
 // functions
 function checkDrinkChoice(){
     let checked = theForm.querySelector('input[name=drink]:checked');
-    let milkBases = document.getElementById("milk-bases"); // div
-    let juiceBases = document.getElementById("juice-bases"); //div
-    let extra = document.getElementById("extra-options"); // div
+    
     outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`;
     if(this.value == "smoothie"){
-        console.log("you choose smoothie");
         juiceBases.style.display = "block";
         milkBases.style.display = "none";
         extra.style.display = "none";
     }
     else{
-        console.log("you choose milkshake");
         milkBases.style.display = "block";
         juiceBases.style.display = "none";
         extra.style.display = "block";
@@ -105,6 +109,7 @@ function initialise(){ // When the window loads
     outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
     outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`;
 }
+
 function PlaceOrder(Event){
     if(theForm.checkValidity()){
         Event.preventDefault();
@@ -150,3 +155,4 @@ btnOrderFav.addEventListener('click', orderFavourite);
 btnPlaceOrder.addEventListener('click', PlaceOrder); // button place order
 
 
+// Note: if I want to display current ingredients/extra I will need to treat each checkbox individually in order to get/set values or text without major issues.
