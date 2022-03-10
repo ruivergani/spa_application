@@ -27,14 +27,48 @@ let idNo = Math.ceil(Math.random()*10e7);
 idNumber.innerText = `${idNo}`;
 
 // variables
-let sizeCost;
-let extraCost;
+let sizeCost = 0;
+let extraCost = 0;
 
 
 // validate the checkbox > 1
 // $('div.checkbox-group.required :checkbox:checked').length > 0
 
 // perform functions
+
+function checkDrinkChoice(){
+    console.log("Check Drink Choice");
+}
+function checkSizeChoice(){
+    let size = txtSizeChoice.options[txtSizeChoice.selectedIndex].value; // size select value
+    if(size == "small"){
+        sizeCost = 2.45;
+    }
+    else if(size == "medium"){
+        sizeCost = 2.95;
+    }
+    else{
+        sizeCost = 3.45;
+    }
+    outputCurrentPrice.innerText = `£${(sizeCost + extraCost).toFixed(2)}`;
+}
+function checkIngredients(){
+    console.log("Check ingredients");
+}
+function checkBaseSmoothie(){
+    console.log("Check Smoothie");
+}
+function checkBaseMilkshake(){
+    console.log("Check base milkshake");
+}
+function checkExtra(){
+    console.log("Check Extra");
+}
+function initialise(){
+    sizeCost = 2.95;
+    extraCost = 0;
+    outputCurrentPrice.innerText = `£${(sizeCost + extraCost).toFixed(2)}`;
+}
 function PlaceOrder(Event){
     if(theForm.checkValidity()){
         Event.preventDefault();
@@ -59,27 +93,6 @@ function orderFavourite(Event){
         Event.preventDefault();
         console.log("Order Favourite");
     }
-}
-function checkDrinkChoice(){
-    console.log("Check Drink Choice");
-}
-function checkSizeChoice(){
-    console.log("Check size choice");
-}
-function checkIngredients(){
-    console.log("Check ingredients");
-}
-function checkBaseSmoothie(){
-    console.log("Check Smoothie");
-}
-function checkBaseMilkshake(){
-    console.log("Check base milkshake");
-}
-function checkExtra(){
-    console.log("Check Extra");
-}
-function initialise(){
-    console.log("Initialise");
 }
 
 // add events to listen for checkbox, selection, input and radio buttons
