@@ -37,12 +37,9 @@ let sizeCost = 0;
 let extraCost = 0;
 
 
-// validate the checkbox > 1
-// $('div.checkbox-group.required :checkbox:checked').length > 0
-
 // functions
 function checkDrinkChoice(){
-    const checked = theForm.querySelector('input[name=drink]:checked');
+    let checked = theForm.querySelector('input[name=drink]:checked');
     outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`;
     if(this.value == "smoothie"){
         console.log("you choose smoothie");
@@ -69,7 +66,14 @@ function checkSizeChoice(){
     outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
 }
 function checkIngredients(){
-    console.log("Check ingredients");
+    if(this.checked){
+        outputDrinkIngredients.innerText += ` ${this.value.charAt(0).toUpperCase() + this.value.slice(1)}`;
+    }
+    else{
+        // remove text from the ingredients
+    }
+    
+    
 }
 function checkBaseSmoothie(){
     console.log("Check Smoothie");
@@ -86,11 +90,13 @@ function checkExtra(){
     }
     outputCurrentPrice.innerText = `£${(sizeCost + extraCost).toFixed(2)}`;
 }
-function initialise(){
+function initialise(){ // When the window loads
     sizeCost = 2.95;
     extraCost = 0;
+    let checked = theForm.querySelector('input[name=drink]:checked');
     outputCurrentPrice.innerText = `£${(sizeCost + extraCost).toFixed(2)}`;
-
+    outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
+    outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`;
 }
 function PlaceOrder(Event){
     if(theForm.checkValidity()){

@@ -54,11 +54,11 @@
                             <fieldset>
                                 <legend>Type:</legend>
                                 <p>
-                                    <input type="radio" id="smoothie" name="drink" value="smoothie" checked>
+                                    <input type="radio" id="smoothie" name="drink" value="smoothie">
                                     <label for="smoothie">Smoothie</label>
                                 </p>
                                 <p>
-                                    <input type="radio" id="milkshake" name="drink" value="milkshake">
+                                    <input type="radio" id="milkshake" name="drink" value="milkshake" checked>
                                     <label for="milkshake">Milkshake</label>
                                 </p>
                                 
@@ -72,25 +72,26 @@
                             </select>
                             <br/>
                             <!-- Ingredients -->
-                            <div class="checkbox-group">
                                 <fieldset>
                                     <legend>Ingredients:</legend>
                                     <p>
-                                        <input type="checkbox" id="banana" name="ingredients" value="banana">
-                                        <label for="banana">Banana</label> <br/>
-                                        <input type="checkbox" id="strawberries" name="ingredients" value="strawberries">
-                                        <label for="strawberries">Strawberries</label><br/>
-                                        <input type="checkbox" id="blueberries" name="ingredients" value="blueberries">
-                                        <label for="blueberries">Blueberries</label><br/>
-                                        <input type="checkbox" id="mango" name="ingredients" value="mango">
-                                        <label for="mango">Mango</label><br/>
-                                        <input type="checkbox" id="chocolate" name="ingredients" value="chocolate">
-                                        <label for="chocolate">Chocolate</label><br/>
-                                        <input type="checkbox" id="white-chocolate" name="ingredients" value="white-chocolate">
-                                        <label for="white-chocolate">White Chocolate</label>
+                                        <div class="checkbox-group required">
+                                            <input type="checkbox" id="banana" name="ingredients" value="banana">
+                                            <label for="banana">Banana</label> <br/>
+                                            <input type="checkbox" id="strawberries" name="ingredients" value="strawberries">
+                                            <label for="strawberries">Strawberries</label><br/>
+                                            <input type="checkbox" id="blueberries" name="ingredients" value="blueberries">
+                                            <label for="blueberries">Blueberries</label><br/>
+                                            <input type="checkbox" id="mango" name="ingredients" value="mango">
+                                            <label for="mango">Mango</label><br/>
+                                            <input type="checkbox" id="chocolate" name="ingredients" value="chocolate">
+                                            <label for="chocolate">Chocolate</label><br/>
+                                            <input type="checkbox" id="white-chocolate" name="ingredients" value="white-chocolate">
+                                            <label for="white-chocolate">White Chocolate</label>
+                                        </div>
                                     </p>
                                 </fieldset>
-                            </div>
+                                
                             
                             <!-- Bases for smoothie -->
                             <label for="base-smoothie">Bases for smoothie:</label> <br/>
