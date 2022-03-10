@@ -40,18 +40,21 @@ let extraCost = 0;
 // functions
 function checkDrinkChoice(){
     let checked = theForm.querySelector('input[name=drink]:checked');
-    let milkBases = document.getElementById("milk-bases");
-    let juiceBases = document.getElementById("juice-bases");
+    let milkBases = document.getElementById("milk-bases"); // div
+    let juiceBases = document.getElementById("juice-bases"); //div
+    let extra = document.getElementById("extra-options"); // div
     outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`;
     if(this.value == "smoothie"){
         console.log("you choose smoothie");
         juiceBases.style.display = "block";
         milkBases.style.display = "none";
+        extra.style.display = "none";
     }
     else{
         console.log("you choose milkshake");
         milkBases.style.display = "block";
         juiceBases.style.display = "none";
+        extra.style.display = "block";
         // can also add extra options (50p each)
         
     }
