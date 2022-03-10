@@ -37,20 +37,33 @@ let extraCost = 0;
 // perform functions
 
 function checkDrinkChoice(){
-    console.log("Check Drink Choice");
+    if(this.value == "smoothie"){
+        console.log("you choose smoothie");
+        // must select bases (apple juice or orange juice only - one only)
+    }
+    else{
+        console.log("you choose milkshake");
+        // must select one of the bases (whole milk, semi-skimmed milk, coconut milk or oat milk - one only)
+        // can also add extra options (50p each)
+    }
 }
 function checkSizeChoice(){
     let size = txtSizeChoice.options[txtSizeChoice.selectedIndex].value; // size select value
+    let sizeName;
     if(size == "small"){
         sizeCost = 2.45;
+        sizeName = "Small";
     }
     else if(size == "medium"){
         sizeCost = 2.95;
+        sizeName = "Medium";
     }
     else{
         sizeCost = 3.45;
+        sizeName = "Large";
     }
     outputCurrentPrice.innerText = `£${(sizeCost + extraCost).toFixed(2)}`;
+    outputDrinkDetails.innerText = `${sizeName}`; // NOT WORKING 
 }
 function checkIngredients(){
     console.log("Check ingredients");
@@ -62,7 +75,13 @@ function checkBaseMilkshake(){
     console.log("Check base milkshake");
 }
 function checkExtra(){
-    console.log("Check Extra");
+    if(this.checked){
+        extraCost += 0.50;
+    }
+    else{
+        extraCost -= 0.50;
+    }
+    outputCurrentPrice.innerText = `£${(sizeCost + extraCost).toFixed(2)}`;
 }
 function initialise(){
     sizeCost = 2.95;
