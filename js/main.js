@@ -14,7 +14,13 @@ const btnOrderFav = document.getElementById('order-favourite');
 const btnPlaceOrder = document.getElementById('place-order');
 
 //output area
-const outputDrinkDetails = document.getElementById('drink-details'); //Small smoothie: banana, strawberries with apple juice.
+const outputDrinkType = document.getElementById('drink-type');
+const outputDrinkSize = document.getElementById('drink-size');
+const outputDrinkIngredients = document.getElementById('drink-ingredients');
+const outputDrinkBase = document.getElementById('drink-base');
+const outputDrinkExtra = document.getElementById('drink-extra');
+
+
 const outputCurrentPrice = document.getElementById('current-drink-price');
 const outputOrderDetails = document.getElementById('order-details'); // Display order details
 const outputItemPrice = document.getElementById('item-price'); // Display item price
@@ -34,9 +40,10 @@ let extraCost = 0;
 // validate the checkbox > 1
 // $('div.checkbox-group.required :checkbox:checked').length > 0
 
-// perform functions
-
+// functions
 function checkDrinkChoice(){
+    const checked = theForm.querySelector('input[name=drink]:checked');
+    outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`;
     if(this.value == "smoothie"){
         console.log("you choose smoothie");
         // must select bases (apple juice or orange juice only - one only)
@@ -49,21 +56,17 @@ function checkDrinkChoice(){
 }
 function checkSizeChoice(){
     let size = txtSizeChoice.options[txtSizeChoice.selectedIndex].value; // size select value
-    let sizeName;
     if(size == "small"){
         sizeCost = 2.45;
-        sizeName = "Small";
     }
     else if(size == "medium"){
         sizeCost = 2.95;
-        sizeName = "Medium";
     }
     else{
         sizeCost = 3.45;
-        sizeName = "Large";
     }
     outputCurrentPrice.innerText = `£${(sizeCost + extraCost).toFixed(2)}`;
-    outputDrinkDetails.innerText = `${sizeName}`; // NOT WORKING 
+    outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
 }
 function checkIngredients(){
     console.log("Check ingredients");
@@ -87,6 +90,7 @@ function initialise(){
     sizeCost = 2.95;
     extraCost = 0;
     outputCurrentPrice.innerText = `£${(sizeCost + extraCost).toFixed(2)}`;
+
 }
 function PlaceOrder(Event){
     if(theForm.checkValidity()){
