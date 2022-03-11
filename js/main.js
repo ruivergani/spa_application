@@ -51,7 +51,7 @@ function initialise(){
     milkBases.style.display = "none";
     juiceBases.style.display = "none";
     extra.style.display = "none";
-    
+    btnSaveFav.disabled = true;
     sizeCost = 2.95;
     extraCost = 0;
     currentDrinkCost = 0;
@@ -66,6 +66,7 @@ function initialise(){
 // type select option
 function checkDrinkChoice(){
     let checked = theForm.querySelector('input[name=drink]:checked');
+    btnSaveFav.disabled = false;
     outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`; // display type of drink in output current drink
     // hide/show features
     if(this.value == "smoothie"){
@@ -74,6 +75,7 @@ function checkDrinkChoice(){
         extra.style.display = "none";
         var baseSmoothie = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
         outputDrinkBase.innerText = `Base: ${baseSmoothie.charAt(0).toUpperCase() + baseSmoothie.slice(1)} juice`
+        
     }
     else{
         milkBases.style.display = "block";
@@ -104,6 +106,7 @@ function checkSizeChoice(){
 // checkbox ingredients option
 function checkIngredients(){
     if(this.checked){
+        btnSaveFav.disabled = false;
         outputDrinkIngredients.innerHTML += ` ${this.value.charAt(0).toUpperCase() + this.value.slice(1)}`;
     }
     else{
@@ -178,8 +181,6 @@ btnOrderFav.addEventListener('click', orderFavourite);
 btnPlaceOrder.addEventListener('click', PlaceOrder); // button place order
 
 
-// Note: if I want to display current ingredients/extra I will need to treat each checkbox individually in order to get/set values or text without major issues.
-// add ingredients / juice bases / extra options to outputCurrentDrinkDetails
-// variable to hold current price of the drink
+// add ingredients  extra options to outputCurrentDrinkDetails
 // can transform the checkbox in array (node-list) to manipulate better the data
 // if this.checked = append to array and display - take out from array and display 
