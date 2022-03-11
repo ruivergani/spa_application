@@ -33,14 +33,13 @@ const outputSubtotalPrice = document.getElementById('subtotal-price'); // Total 
 const outputFinalMessage = document.getElementById('final-message'); // Final message
 const idNumber = document.getElementById('idNumber');
 
+// variables global
 // generate random id number
-let idNo = Math.ceil(Math.random()*10e7);
+var idNo = Math.ceil(Math.random()*10e7);
 idNumber.innerText = `${idNo}`;
-
-// variables
-let sizeCost = 0;
-let extraCost = 0;
-let currentDrinkCost = 0; // currentDrinkPrice
+var sizeCost = 0;
+var extraCost = 0;
+var currentDrinkCost = (sizeCost + extraCost); // currentDrinkPrice
 
 // initialise none - to avoid user's mistake
 milkBases.style.display = "none";
@@ -49,8 +48,9 @@ extra.style.display = "none";
 
 // functions
 function checkDrinkChoice(){
-    let checked = theForm.querySelector('input[name=drink]:checked');
-    outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`;
+    var checked = theForm.querySelector('input[name=drink]:checked');
+    outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`; // display type of drink in output current drink
+    // hide/show features
     if(this.value == "smoothie"){
         juiceBases.style.display = "block";
         milkBases.style.display = "none";
@@ -64,7 +64,7 @@ function checkDrinkChoice(){
     }
 }
 function checkSizeChoice(){
-    let size = txtSizeChoice.options[txtSizeChoice.selectedIndex].value; // size select value
+    var size = txtSizeChoice.options[txtSizeChoice.selectedIndex].value; // size select value
     if(size == "small"){
         sizeCost = 2.45;
     }
@@ -103,11 +103,12 @@ function checkExtra(){
     currentDrinkCost = (sizeCost + extraCost);
     outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
 }
-function initialise(){ // When the window loads
+// When the window loads
+function initialise(){ 
     sizeCost = 2.95;
     extraCost = 0;
     currentDrinkCost = 0;
-    let checked = theForm.querySelector('input[name=drink]:checked');
+    var checked = theForm.querySelector('input[name=drink]:checked');
     currentDrinkCost = (sizeCost + extraCost);
     outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
     outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
@@ -162,3 +163,5 @@ btnPlaceOrder.addEventListener('click', PlaceOrder); // button place order
 // Note: if I want to display current ingredients/extra I will need to treat each checkbox individually in order to get/set values or text without major issues.
 // add ingredients / juice bases / extra options to outputCurrentDrinkDetails
 // variable to hold current price of the drink
+// can transform the checkbox in array (node-list) to manipulate better the data
+// if this.checked = append to array and display - take out from array and display 
