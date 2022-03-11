@@ -34,35 +34,58 @@ const outputFinalMessage = document.getElementById('final-message'); // Final me
 const idNumber = document.getElementById('idNumber');
 
 // variables global
-// generate random id number
-var idNo = Math.ceil(Math.random()*10e7);
+
+var idNo = Math.ceil(Math.random()*10e7); // random number
 idNumber.innerText = `${idNo}`;
 var sizeCost = 0;
 var extraCost = 0;
 var currentDrinkCost = (sizeCost + extraCost); // currentDrinkPrice
 
-// initialise none - to avoid user's mistake
-milkBases.style.display = "none";
-juiceBases.style.display = "none";
-extra.style.display = "none";
 
-// functions
+// Functions
+
+// window load function
+window.addEventListener('load', initialise);
+function initialise(){
+    // initialise none - to avoid user's mistake
+    milkBases.style.display = "none";
+    juiceBases.style.display = "none";
+    extra.style.display = "none";
+    
+    sizeCost = 2.95;
+    extraCost = 0;
+    currentDrinkCost = 0;
+    currentDrinkCost = (sizeCost + extraCost);
+    outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
+    // display current drink details below (default values)
+    outputDrinkType.innerText = `Type: `;
+    outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
+    outputDrinkIngredients.innerText = `Ingredients: `;
+    outputDrinkBase.innerText = `Base: `;
+}
+// type select option
 function checkDrinkChoice(){
-    var checked = theForm.querySelector('input[name=drink]:checked');
+    let checked = theForm.querySelector('input[name=drink]:checked');
     outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`; // display type of drink in output current drink
     // hide/show features
     if(this.value == "smoothie"){
         juiceBases.style.display = "block";
         milkBases.style.display = "none";
         extra.style.display = "none";
+        var baseSmoothie = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
+        outputDrinkBase.innerText = `Base: ${baseSmoothie.charAt(0).toUpperCase() + baseSmoothie.slice(1)} juice`
     }
     else{
         milkBases.style.display = "block";
         juiceBases.style.display = "none";
         extra.style.display = "block";
+        var baseMilkshake = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
+        outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`
         // can also add extra options (50p each)
+        outputDrinkExtra.innerText = `Extras: `;
     }
 }
+// size select option
 function checkSizeChoice(){
     var size = txtSizeChoice.options[txtSizeChoice.selectedIndex].value; // size select value
     if(size == "small"){
@@ -76,8 +99,9 @@ function checkSizeChoice(){
     }
     currentDrinkCost = (sizeCost + extraCost);
     outputCurrentPrice.innerText = `£${currentDrinkCost.toFixed(2)}`;
-    outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
+    outputDrinkSize.innerText = `Size: ${size.charAt(0).toUpperCase() + size.slice(1)}`;
 }
+// checkbox ingredients option
 function checkIngredients(){
     if(this.checked){
         outputDrinkIngredients.innerHTML += ` ${this.value.charAt(0).toUpperCase() + this.value.slice(1)}`;
@@ -86,13 +110,7 @@ function checkIngredients(){
         outputDrinkIngredients.innerHTML = '';
     }
 }
-
-function checkBaseSmoothie(){
-    console.log("Check Smoothie");
-}
-function checkBaseMilkshake(){
-    console.log("Check base milkshake");
-}
+// checkbox extra option
 function checkExtra(){
     if(this.checked){
         extraCost += 0.50;
@@ -103,16 +121,15 @@ function checkExtra(){
     currentDrinkCost = (sizeCost + extraCost);
     outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
 }
-// When the window loads
-function initialise(){ 
-    sizeCost = 2.95;
-    extraCost = 0;
-    currentDrinkCost = 0;
-    var checked = theForm.querySelector('input[name=drink]:checked');
-    currentDrinkCost = (sizeCost + extraCost);
-    outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
-    outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
-    outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`;
+// select option base smoothie
+function checkBaseSmoothie(){
+    var baseSmoothie = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
+    outputDrinkBase.innerText = `Base: ${baseSmoothie.charAt(0).toUpperCase() + baseSmoothie.slice(1)} juice`
+}
+// select option base milkshake
+function checkBaseMilkshake(){
+    var baseMilkshake = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
+    outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`
 }
 
 function PlaceOrder(Event){
@@ -120,6 +137,7 @@ function PlaceOrder(Event){
         Event.preventDefault();
         outputFinalMessage.innerText = `Your order has been received, thumbs up from the restaurant!`;
         theForm.reset();
+        initialise(); // call initialise 
     }
 }
 function addOrder(Event){
@@ -151,7 +169,7 @@ txtBaseSmoothie.addEventListener("change", checkBaseSmoothie);
 txtBaseMilkshake.addEventListener("change", checkBaseMilkshake);
 txtExtraOption.forEach(item =>
     item.addEventListener("change", checkExtra));
-window.addEventListener('load', initialise);// executed when the window loads
+
 
 // listen to events
 btnAddOrder.addEventListener('click', addOrder);

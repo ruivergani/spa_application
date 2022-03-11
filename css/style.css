@@ -25,10 +25,7 @@ img{
     overflow: hidden;
     transition: all 0.3s;
 }
-button{
-    background-color: transparent;
-    cursor: pointer;
-}
+
 a{
     cursor: pointer;
 }
@@ -54,7 +51,6 @@ a{
     padding: 0px 1.5rem;
     margin: 0 auto;
 }
-
 header{
     top: 0;
     left: 0;
@@ -126,7 +122,6 @@ span{
     padding-left: 10px;
 }
 
-
 input[type=text], select, option {
     width: 60%;
     padding: 12px 20px;
@@ -152,7 +147,7 @@ label{
     font-size: 17px; 
     padding-left: 10px;
 }
-div .buttons input{
+div .buttons button{
     padding: 15px;
     margin-top: 20px;
     margin-right: 10px;
@@ -164,8 +159,12 @@ div .buttons input{
     transition: all 0.3s;
     cursor: pointer;
 }
-div .buttons input:hover{
+div .buttons button:hover{
     background-color: var(--text-dark);
+}
+button:disabled{
+    cursor: not-allowed !important;
+    opacity: 0.3;
 }
 .monkey-bar .container .order-selection{
     width: 100%;
