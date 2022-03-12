@@ -40,8 +40,7 @@ var sizeCost = 0;
 var extraCost = 0;
 var currentDrinkCost = (sizeCost + extraCost); // currentDrinkPrice
 var directory;
-var orderItem= []; // each current drink
-var order = []; // full order drink
+
 
 // Functions
 
@@ -75,11 +74,12 @@ function checkDrinkChoice(){
         extra.style.display = "none";
         var baseSmoothie = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
         outputDrinkBase.innerText = `Base: ${baseSmoothie.charAt(0).toUpperCase() + baseSmoothie.slice(1)} juice`;
-        // because Extras does not exist in Smoothie option - set values to default again
+        // SET DEFAULT VALUES AGAIN BASED ON SMOOTHIE OPTION
         currentDrinkCost = 0;
         extraCost = 0;
         currentDrinkCost = (sizeCost + extraCost);
         outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
+        outputDrinkExtra.innerText = "";
     }
     else{
         milkBases.style.display = "block";
@@ -154,19 +154,26 @@ function checkBaseMilkshake(){
     outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`
 }
 
+var orderItem= []; // each current drink
+var order = []; // full order drink
+
 function addOrder(Event){
     if(theForm.checkValidity()){
         Event.preventDefault(); //prevent refreshing and sending to server
         // collect all values into an array
         var drinkType = theForm.querySelector('input[name=drink]:checked');
         var drinkSize = txtSizeChoice.options[txtSizeChoice.selectedIndex].value;
-        var drinkIngredientsNodeList = theForm.querySelectorAll('input[name=ingredients]:checked');
-        var arrayIngredients = Array.from(drinkIngredientsNodeList);
+        //var drinkIngredientsNodeList = theForm.querySelectorAll('input[name=ingredients]:checked');
+        //var arrayIngredients = Array.from(drinkIngredientsNodeList);
+
         var drinkJuiceBase = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
         var drinkMilkBase = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
-        var drinkExtraNodeList = theForm.querySelectorAll('input[name=extra]:checked');
-        var arrayExtra = Array.from(drinkExtraNodeList);
+
+        //var drinkExtraNodeList = theForm.querySelectorAll('input[name=extra]:checked');
+        //var arrayExtra = Array.from(drinkExtraNodeList);
+    
         var subtotalPrice = 0;
+        
         if(drinkType.value == "smoothie"){ // validation depending on drink type
             orderItem = [drinkType.value, drinkSize, arrayIngredients, drinkJuiceBase, "no extras", currentDrinkCost];
         }
