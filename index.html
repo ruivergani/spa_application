@@ -48,7 +48,7 @@
                 <div class="inputs">
                     <p>Choose your Drink: </p>
                     <div class="main-form">
-                        <form action="" method="get" id="myForm">
+                        <form action="" id="myForm">
                             <p>Order <span id="idNumber">#</span></p> <!-- Give an id (automatic generated to a form)-->
                             <!-- Drink Type -->
                             <fieldset>
@@ -96,18 +96,32 @@
                                     <legend>Ingredients:</legend>
                                     <p>
                                         <div class="form-group">
-                                            <input type="checkbox" id="banana" name="ingredients" value="banana">
-                                            <label for="banana">Banana</label> <br/>
-                                            <input type="checkbox" id="strawberries" name="ingredients" value="strawberries">
-                                            <label for="strawberries">Strawberries</label><br/>
-                                            <input type="checkbox" id="blueberries" name="ingredients" value="blueberries">
-                                            <label for="blueberries">Blueberries</label><br/>
-                                            <input type="checkbox" id="mango" name="ingredients" value="mango">
-                                            <label for="mango">Mango</label><br/>
-                                            <input type="checkbox" id="chocolate" name="ingredients" value="chocolate">
-                                            <label for="chocolate">Chocolate</label><br/>
-                                            <input type="checkbox" id="white-chocolate" name="ingredients" value="white-chocolate">
-                                            <label for="white-chocolate">White Chocolate</label>
+                                            <ul>
+                                                <li>
+                                                    <input type="checkbox" id="banana" name="ingredients" value="banana">
+                                                    <label for="banana">Banana</label> <br/>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="strawberries" name="ingredients" value="strawberries">
+                                                    <label for="strawberries">Strawberries</label><br/>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="blueberries" name="ingredients" value="blueberries">
+                                                    <label for="blueberries">Blueberries</label><br/>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="mango" name="ingredients" value="mango">
+                                                    <label for="mango">Mango</label><br/>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="chocolate" name="ingredients" value="chocolate">
+                                                    <label for="chocolate">Chocolate</label><br/>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="white-chocolate" name="ingredients" value="white-chocolate">
+                                                    <label for="white-chocolate">White Chocolate</label>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </p>
                             </fieldset>
@@ -147,7 +161,8 @@
                     <!-- Each characterist about the drink selected -->
                     <p id="drink-type"></p>
                     <p id="drink-size"></p>
-                    <p id="drink-ingredients"></p>
+                    <p id="ingriedients-title">Ingredients: </p>
+                    <p id="drink-ingredients" style="padding-top: 10px;"></p>
                     <p id="drink-base"></p>
                     <p id="drink-extra"></p>
                     <div class="current-price">

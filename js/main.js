@@ -34,13 +34,14 @@ const outputFinalMessage = document.getElementById('final-message'); // Final me
 const idNumber = document.getElementById('idNumber');
 
 // variables global
-
 var idNo = Math.ceil(Math.random()*10e7); // random number
 idNumber.innerText = `${idNo}`;
 var sizeCost = 0;
 var extraCost = 0;
 var currentDrinkCost = (sizeCost + extraCost); // currentDrinkPrice
-
+var directory;
+var orderItem= []; // each current drink
+var order = []; // full order drink
 
 // Functions
 
@@ -60,7 +61,6 @@ function initialise(){
     // display current drink details below (default values)
     outputDrinkType.innerText = `Type: `;
     outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
-    outputDrinkIngredients.innerText = `Ingredients: `;
     outputDrinkBase.innerText = `Base: `;
 }
 // type select option
@@ -75,7 +75,6 @@ function checkDrinkChoice(){
         extra.style.display = "none";
         var baseSmoothie = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
         outputDrinkBase.innerText = `Base: ${baseSmoothie.charAt(0).toUpperCase() + baseSmoothie.slice(1)} juice`
-        
     }
     else{
         milkBases.style.display = "block";
@@ -83,7 +82,6 @@ function checkDrinkChoice(){
         extra.style.display = "block";
         var baseMilkshake = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
         outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`
-        // can also add extra options (50p each)
         outputDrinkExtra.innerText = `Extras: `;
     }
 }
@@ -105,13 +103,22 @@ function checkSizeChoice(){
 }
 // checkbox ingredients option
 function checkIngredients(){
+    let drinkIngredientsNodeList = theForm.querySelectorAll('input[name=ingredients]:checked'); 
+    let arrayIngredients = Array.from(drinkIngredientsNodeList);
+    let arrayItemIngredients = [];
     if(this.checked){
-        btnSaveFav.disabled = false;
-        outputDrinkIngredients.innerHTML += ` ${this.value.charAt(0).toUpperCase() + this.value.slice(1)}`;
+        for(let i = 0; i < arrayIngredients.length; i++){
+            arrayItemIngredients += arrayIngredients[i].value;
+        }
+        outputDrinkIngredients.innerText = `${arrayItemIngredients}`;
     }
     else{
-        outputDrinkIngredients.innerHTML = '';
+        for(let i = 0; i < arrayIngredients.length; i++){
+            arrayItemIngredients += arrayIngredients[i].value;
+        }
+        outputDrinkIngredients.innerText = `${arrayItemIngredients}`;
     }
+    
 }
 // checkbox extra option
 function checkExtra(){
@@ -145,8 +152,19 @@ function PlaceOrder(Event){
 }
 function addOrder(Event){
     if(theForm.checkValidity()){
-        Event.preventDefault();
-        console.log("Added to Order.");
+        Event.preventDefault(); //prevent refreshing and sending to server
+        // collect all values into an array
+        let drinkType = theForm.querySelector('input[name=drink]:checked');
+        let drinkSize = txtSizeChoice.options[txtSizeChoice.selectedIndex].value;
+        let drinkIngredientsNodeList = theForm.querySelectorAll('input[name=ingredients]:checked'); 
+        let arrayIngredients = Array.from(drinkIngredientsNodeList);
+        console.log(arrayIngredients);
+        
+        //orderItem = [];
+        //console.log(orderItem);
+        //order = [orderItem, orderItem];
+        //console.log(order);
+         
     }
 }
 function saveFavourite(Event){
