@@ -159,25 +159,25 @@ function addOrder(Event){
         let drinkMilkBase = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
         let drinkExtraNodeList = theForm.querySelectorAll('input[name=extra]:checked');
         let arrayExtra = Array.from(drinkExtraNodeList);
+        let subtotalPrice = 0;
         if(drinkType.value == "smoothie"){ // validation depending on drink type
             orderItem = [drinkType, drinkSize, arrayIngredients, drinkJuiceBase, currentDrinkCost];
         }
         else{
             orderItem = [drinkType, drinkSize, arrayIngredients, drinkMilkBase, arrayExtra, currentDrinkCost];
         }
-        console.log(orderItem);
-        
-        //order = [orderItem, orderItem];
-        //console.log(order);
-         
+        order.push(orderItem); // add to end and return number of elements
+        for(item in order){
+            subtotalPrice += currentDrinkCost;
+        }
+        // display order details
     }
 }
 function PlaceOrder(Event){
     if(theForm.checkValidity()){
         Event.preventDefault();
         outputFinalMessage.innerText = `Your order has been received, thumbs up from the restaurant!`;
-        theForm.reset();
-        initialise(); // call initialise 
+        // theForm.reset();
     }
 }
 function saveFavourite(Event){
