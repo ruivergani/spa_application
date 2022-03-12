@@ -74,14 +74,19 @@ function checkDrinkChoice(){
         milkBases.style.display = "none";
         extra.style.display = "none";
         var baseSmoothie = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
-        outputDrinkBase.innerText = `Base: ${baseSmoothie.charAt(0).toUpperCase() + baseSmoothie.slice(1)} juice`
+        outputDrinkBase.innerText = `Base: ${baseSmoothie.charAt(0).toUpperCase() + baseSmoothie.slice(1)} juice`;
+        // because Extras does not exist in Smoothie option - set values to default again
+        currentDrinkCost = 0;
+        extraCost = 0;
+        currentDrinkCost = (sizeCost + extraCost);
+        outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
     }
     else{
         milkBases.style.display = "block";
         juiceBases.style.display = "none";
         extra.style.display = "block";
         var baseMilkshake = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
-        outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`
+        outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`;
         outputDrinkExtra.innerText = `Extras: `;
     }
 }
@@ -142,14 +147,6 @@ function checkBaseMilkshake(){
     outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`
 }
 
-function PlaceOrder(Event){
-    if(theForm.checkValidity()){
-        Event.preventDefault();
-        outputFinalMessage.innerText = `Your order has been received, thumbs up from the restaurant!`;
-        theForm.reset();
-        initialise(); // call initialise 
-    }
-}
 function addOrder(Event){
     if(theForm.checkValidity()){
         Event.preventDefault(); //prevent refreshing and sending to server
@@ -158,13 +155,29 @@ function addOrder(Event){
         let drinkSize = txtSizeChoice.options[txtSizeChoice.selectedIndex].value;
         let drinkIngredientsNodeList = theForm.querySelectorAll('input[name=ingredients]:checked'); 
         let arrayIngredients = Array.from(drinkIngredientsNodeList);
-        console.log(arrayIngredients);
+        let drinkJuiceBase = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
+        let drinkMilkBase = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
+        let drinkExtraNodeList = theForm.querySelectorAll('input[name=extra]:checked');
+        let arrayExtra = Array.from(drinkExtraNodeList);
+        if(drinkType.value == "smoothie"){ // validation depending on drink type
+            orderItem = [drinkType, drinkSize, arrayIngredients, drinkJuiceBase, currentDrinkCost];
+        }
+        else{
+            orderItem = [drinkType, drinkSize, arrayIngredients, drinkMilkBase, arrayExtra, currentDrinkCost];
+        }
+        console.log(orderItem);
         
-        //orderItem = [];
-        //console.log(orderItem);
         //order = [orderItem, orderItem];
         //console.log(order);
          
+    }
+}
+function PlaceOrder(Event){
+    if(theForm.checkValidity()){
+        Event.preventDefault();
+        outputFinalMessage.innerText = `Your order has been received, thumbs up from the restaurant!`;
+        theForm.reset();
+        initialise(); // call initialise 
     }
 }
 function saveFavourite(Event){
@@ -191,14 +204,8 @@ txtBaseMilkshake.addEventListener("change", checkBaseMilkshake);
 txtExtraOption.forEach(item =>
     item.addEventListener("change", checkExtra));
 
-
 // listen to events
 btnAddOrder.addEventListener('click', addOrder);
 btnSaveFav.addEventListener('click', saveFavourite);
 btnOrderFav.addEventListener('click', orderFavourite);
 btnPlaceOrder.addEventListener('click', PlaceOrder); // button place order
-
-
-// add ingredients  extra options to outputCurrentDrinkDetails
-// can transform the checkbox in array (node-list) to manipulate better the data
-// if this.checked = append to array and display - take out from array and display 
