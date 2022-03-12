@@ -154,8 +154,8 @@ function checkBaseMilkshake(){
     outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`
 }
 
-var orderItem= []; // each current drink
-var order = []; // full order drink
+var orderItem= {}; // each current drink
+var order = {}; // full order drink
 
 function addOrder(Event){
     if(theForm.checkValidity()){
@@ -163,27 +163,24 @@ function addOrder(Event){
         // collect all values into an array
         var drinkType = theForm.querySelector('input[name=drink]:checked');
         var drinkSize = txtSizeChoice.options[txtSizeChoice.selectedIndex].value;
-        //var drinkIngredientsNodeList = theForm.querySelectorAll('input[name=ingredients]:checked');
-        //var arrayIngredients = Array.from(drinkIngredientsNodeList);
-
+        var stringIngredients = listArrayIngredients.toString(); // CONVERT TO STRING TO SHOW
         var drinkJuiceBase = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
         var drinkMilkBase = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
-
-        //var drinkExtraNodeList = theForm.querySelectorAll('input[name=extra]:checked');
-        //var arrayExtra = Array.from(drinkExtraNodeList);
-    
+        var stringExtras = listArrayExtras.toString(); // CONVERT TO STRING TO SHOW
         var subtotalPrice = 0;
-        
-        if(drinkType.value == "smoothie"){ // validation depending on drink type
-            orderItem = [drinkType.value, drinkSize, arrayIngredients, drinkJuiceBase, "no extras", currentDrinkCost];
-        }
-        else{
-            orderItem = [drinkType.value, drinkSize, arrayIngredients, drinkMilkBase, arrayExtra, currentDrinkCost];
-        }
-        order.push(orderItem); // add to end and return number of elements
-        for(item in order){
-           subtotalPrice += currentDrinkCost;
-        }
+
+
+        // VALIDATION DEPEDING ON DRINK TYPE
+       // if(drinkType.value == "smoothie"){
+        //    orderItem = ;
+       // }
+       // else{
+        //    orderItem = [drinkType.value, drinkSize, arrayIngredients, drinkMilkBase, arrayExtra, currentDrinkCost];
+       // }
+        //order.push(orderItem); // add to end and return number of elements
+        //for(item in order){
+        //   subtotalPrice += currentDrinkCost;
+       // }
 
 
 
@@ -195,8 +192,8 @@ function addOrder(Event){
        // arrayExtra.forEach(element => console.log(element.value));
        // console.log(order[0][5]);
         
-       outputItemPrice.innerText = `£${currentDrinkCost.toFixed(2)}`;
-       outputSubtotalPrice.innerText = `£${subtotalPrice.toFixed(2)}`;
+       //outputItemPrice.innerText = `£${currentDrinkCost.toFixed(2)}`;
+       //outputSubtotalPrice.innerText = `£${subtotalPrice.toFixed(2)}`;
     }
 }
 function PlaceOrder(Event){
