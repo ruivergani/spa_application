@@ -1,37 +1,38 @@
 // get references to interactive elements
-const theForm = document.getElementById('myForm');
-const txtDrinkChoice = document.getElementsByName('drink'); // radio button (smoothie or milkshake)
-const txtSizeChoice = document.getElementById('size'); // select option (size of the drink)
-const txtIngredients = document.getElementsByName('ingredients'); // checkbox (at least 1)
-const txtBaseSmoothie = document.getElementById('base-smoothie'); // select option
-const txtBaseMilkshake = document.getElementById('base-milkshake'); // select option
-const txtExtraOption = document.getElementsByName('extra'); // checkbox (can choose one or not)
+var theForm = document.getElementById('myForm');
+var txtDrinkChoice = document.getElementsByName('drink'); // radio button (smoothie or milkshake)
+var txtSizeChoice = document.getElementById('size'); // select option (size of the drink)
+var txtIngredients = document.querySelectorAll('input[name=ingredients]');  // checkbox (at least 1)
+var txtBaseSmoothie = document.getElementById('base-smoothie'); // select option
+var txtBaseMilkshake = document.getElementById('base-milkshake'); // select option
+var txtExtraOption = document.getElementsByName('extra'); // checkbox (can choose one or not)
+var text = '<span> Ingredients: </span>';
 
 // div to (hide/show)
-const milkBases = document.getElementById("milk-bases"); 
-const juiceBases = document.getElementById("juice-bases"); 
-const extra = document.getElementById("extra-options"); 
+var milkBases = document.getElementById("milk-bases"); 
+var juiceBases = document.getElementById("juice-bases"); 
+var extra = document.getElementById("extra-options"); 
 
 //buttons
-const btnAddOrder = document.getElementById('add-order');
-const btnSaveFav = document.getElementById('save-favourite');
-const btnOrderFav = document.getElementById('order-favourite');
-const btnPlaceOrder = document.getElementById('place-order');
+var btnAddOrder = document.getElementById('add-order');
+var btnSaveFav = document.getElementById('save-favourite');
+var btnOrderFav = document.getElementById('order-favourite');
+var btnPlaceOrder = document.getElementById('place-order');
 
 //output current drink details 
-const outputDrinkType = document.getElementById('drink-type');
-const outputDrinkSize = document.getElementById('drink-size');
-const outputDrinkIngredients = document.getElementById('drink-ingredients');
-const outputDrinkBase = document.getElementById('drink-base');
-const outputDrinkExtra = document.getElementById('drink-extra');
-const outputCurrentPrice = document.getElementById('current-drink-price');
+var outputDrinkType = document.getElementById('drink-type');
+var outputDrinkSize = document.getElementById('drink-size');
+var outputDrinkIngredients = document.getElementById('drink-ingredients');
+var outputDrinkBase = document.getElementById('drink-base');
+var outputDrinkExtra = document.getElementById('drink-extra');
+var outputCurrentPrice = document.getElementById('current-drink-price');
 
 // output full order details
-const outputOrderDetails = document.getElementById('order-details'); // Display order details
-const outputItemPrice = document.getElementById('item-price'); // Display item price
-const outputSubtotalPrice = document.getElementById('subtotal-price'); // Total Price value
-const outputFinalMessage = document.getElementById('final-message'); // Final message
-const idNumber = document.getElementById('idNumber');
+var outputOrderDetails = document.getElementById('order-details'); // Display order details
+var outputItemPrice = document.getElementById('item-price'); // Display item price
+var outputSubtotalPrice = document.getElementById('subtotal-price'); // Total Price value
+var outputFinalMessage = document.getElementById('final-message'); // Final message
+var idNumber = document.getElementById('idNumber');
 
 // variables global
 var idNo = Math.ceil(Math.random()*10e7); // random number
@@ -106,28 +107,25 @@ function checkSizeChoice(){
     outputCurrentPrice.innerText = `£${currentDrinkCost.toFixed(2)}`;
     outputDrinkSize.innerText = `Size: ${size.charAt(0).toUpperCase() + size.slice(1)}`;
 }
-// checkbox ingredients option
-function checkIngredients(){
-    let drinkIngredientsNodeList = theForm.querySelectorAll('input[name=ingredients]:checked'); 
-    let arrayIngredients = Array.from(drinkIngredientsNodeList);
-    let arrayItemIngredients = [];
-    if(this.checked){
-        for(let i = 0; i < arrayIngredients.length; i++){
-            arrayItemIngredients += arrayIngredients[i].value;
+
+var listArrayIngredients = [];
+for(var checkbox of txtIngredients){
+    checkbox.addEventListener('click', function(){
+        if(this.checked == true){
+            listArrayIngredients.push(this.value);
+            outputDrinkIngredients.innerHTML = listArrayIngredients.join(' / ');
         }
-        outputDrinkIngredients.innerText = `${arrayItemIngredients}`;
-    }
-    else{
-        for(let i = 0; i < arrayIngredients.length; i++){
-            arrayItemIngredients += arrayIngredients[i].value;
-        }
-        outputDrinkIngredients.innerText = `${arrayItemIngredients}`;
-    }
-    
+        else{
+            // REMOVE VALUE FROM ARRAY WHEN IT IS UNCHECKED
+            listArrayIngredients = listArrayIngredients.filter(e => e !== this.value);
+            outputDrinkIngredients.innerHTML = listArrayIngredients.join(' / ');
+        } 
+    })
 }
+
 // checkbox extra option
 function checkExtra(){
-    if(this.checked){
+    if(this.checked == true){
         extraCost += 0.50;
     }
     else{
@@ -147,30 +145,43 @@ function checkBaseMilkshake(){
     outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`
 }
 
+
 function addOrder(Event){
     if(theForm.checkValidity()){
         Event.preventDefault(); //prevent refreshing and sending to server
         // collect all values into an array
-        let drinkType = theForm.querySelector('input[name=drink]:checked');
-        let drinkSize = txtSizeChoice.options[txtSizeChoice.selectedIndex].value;
-        let drinkIngredientsNodeList = theForm.querySelectorAll('input[name=ingredients]:checked'); 
-        let arrayIngredients = Array.from(drinkIngredientsNodeList);
-        let drinkJuiceBase = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
-        let drinkMilkBase = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
-        let drinkExtraNodeList = theForm.querySelectorAll('input[name=extra]:checked');
-        let arrayExtra = Array.from(drinkExtraNodeList);
-        let subtotalPrice = 0;
+        var drinkType = theForm.querySelector('input[name=drink]:checked');
+        var drinkSize = txtSizeChoice.options[txtSizeChoice.selectedIndex].value;
+        var drinkIngredientsNodeList = theForm.querySelectorAll('input[name=ingredients]:checked');
+        var arrayIngredients = Array.from(drinkIngredientsNodeList);
+        var drinkJuiceBase = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
+        var drinkMilkBase = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
+        var drinkExtraNodeList = theForm.querySelectorAll('input[name=extra]:checked');
+        var arrayExtra = Array.from(drinkExtraNodeList);
+        var subtotalPrice = 0;
         if(drinkType.value == "smoothie"){ // validation depending on drink type
-            orderItem = [drinkType, drinkSize, arrayIngredients, drinkJuiceBase, currentDrinkCost];
+            orderItem = [drinkType.value, drinkSize, arrayIngredients, drinkJuiceBase, "no extras", currentDrinkCost];
         }
         else{
-            orderItem = [drinkType, drinkSize, arrayIngredients, drinkMilkBase, arrayExtra, currentDrinkCost];
+            orderItem = [drinkType.value, drinkSize, arrayIngredients, drinkMilkBase, arrayExtra, currentDrinkCost];
         }
         order.push(orderItem); // add to end and return number of elements
         for(item in order){
-            subtotalPrice += currentDrinkCost;
+           subtotalPrice += currentDrinkCost;
         }
+
+
+
         // display order details
+       // console.log(order[0][0]); 
+       // console.log(order[0][1]); 
+       // arrayIngredients.forEach(element => console.log(element.value));
+       // console.log(order[0][3]); 
+       // arrayExtra.forEach(element => console.log(element.value));
+       // console.log(order[0][5]);
+        
+       outputItemPrice.innerText = `£${currentDrinkCost.toFixed(2)}`;
+       outputSubtotalPrice.innerText = `£${subtotalPrice.toFixed(2)}`;
     }
 }
 function PlaceOrder(Event){
@@ -197,8 +208,6 @@ function orderFavourite(Event){
 txtDrinkChoice.forEach(item =>
     item.addEventListener("change", checkDrinkChoice));
 txtSizeChoice.addEventListener("change", checkSizeChoice);
-txtIngredients.forEach(item => 
-    item.addEventListener("change", checkIngredients));
 txtBaseSmoothie.addEventListener("change", checkBaseSmoothie);
 txtBaseMilkshake.addEventListener("change", checkBaseMilkshake);
 txtExtraOption.forEach(item =>
