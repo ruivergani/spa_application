@@ -5,8 +5,7 @@ var txtSizeChoice = document.getElementById('size'); // select option (size of t
 var txtIngredients = document.querySelectorAll('input[name=ingredients]');  // checkbox (at least 1)
 var txtBaseSmoothie = document.getElementById('base-smoothie'); // select option
 var txtBaseMilkshake = document.getElementById('base-milkshake'); // select option
-var txtExtraOption = document.getElementsByName('extra'); // checkbox (can choose one or not)
-var text = '<span> Ingredients: </span>';
+var txtExtra = document.querySelectorAll('input[name=extra]'); // checkbox (can choose one or not)
 
 // div to (hide/show)
 var milkBases = document.getElementById("milk-bases"); 
@@ -107,7 +106,7 @@ function checkSizeChoice(){
     outputCurrentPrice.innerText = `£${currentDrinkCost.toFixed(2)}`;
     outputDrinkSize.innerText = `Size: ${size.charAt(0).toUpperCase() + size.slice(1)}`;
 }
-
+// checkboxes ingredients
 var listArrayIngredients = [];
 for(var checkbox of txtIngredients){
     checkbox.addEventListener('click', function(){
@@ -122,18 +121,28 @@ for(var checkbox of txtIngredients){
         } 
     })
 }
-
-// checkbox extra option
-function checkExtra(){
-    if(this.checked == true){
-        extraCost += 0.50;
-    }
-    else{
-        extraCost -= 0.50;
-    }
-    currentDrinkCost = (sizeCost + extraCost);
-    outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
+// checkboxes extras
+var listArrayExtras = [];
+var text = '<p>Extras: </p>';
+for(var checkboxExtra of txtExtra){
+    checkboxExtra.addEventListener('click', function(){
+        if(this.checked == true){
+            extraCost += 0.50;
+            listArrayExtras.push(this.value);
+            outputDrinkExtra.innerHTML = text + listArrayExtras.join(' / ');
+        }
+        else{
+            extraCost -= 0.50;
+            //REMOVE VALUE FROM ARRAY WHEN IT IS UNCHECKED
+            listArrayExtras = listArrayExtras.filter(e => e !== this.value);
+            outputDrinkExtra.innerHTML = text + listArrayExtras.join(' / ');
+        }
+        currentDrinkCost = (sizeCost + extraCost);
+        outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
+    })
 }
+
+
 // select option base smoothie
 function checkBaseSmoothie(){
     var baseSmoothie = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
@@ -144,7 +153,6 @@ function checkBaseMilkshake(){
     var baseMilkshake = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
     outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`
 }
-
 
 function addOrder(Event){
     if(theForm.checkValidity()){
@@ -210,8 +218,6 @@ txtDrinkChoice.forEach(item =>
 txtSizeChoice.addEventListener("change", checkSizeChoice);
 txtBaseSmoothie.addEventListener("change", checkBaseSmoothie);
 txtBaseMilkshake.addEventListener("change", checkBaseMilkshake);
-txtExtraOption.forEach(item =>
-    item.addEventListener("change", checkExtra));
 
 // listen to events
 btnAddOrder.addEventListener('click', addOrder);
