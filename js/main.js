@@ -154,8 +154,8 @@ function checkBaseMilkshake(){
     outputDrinkBase.innerText = `Base: ${baseMilkshake.charAt(0).toUpperCase() + baseMilkshake.slice(1)}`
 }
 
-var orderItem= {}; // each current drink
-var order = {}; // full order drink
+var orderItem= []; // each current drink
+var order = []; // full order drink
 
 function addOrder(Event){
     if(theForm.checkValidity()){
@@ -171,29 +171,34 @@ function addOrder(Event){
 
 
         // VALIDATION DEPEDING ON DRINK TYPE
-       // if(drinkType.value == "smoothie"){
-        //    orderItem = ;
-       // }
-       // else{
-        //    orderItem = [drinkType.value, drinkSize, arrayIngredients, drinkMilkBase, arrayExtra, currentDrinkCost];
-       // }
-        //order.push(orderItem); // add to end and return number of elements
-        //for(item in order){
-        //   subtotalPrice += currentDrinkCost;
-       // }
+        if(drinkType.value == "smoothie"){
+            orderItem = [drinkType.value, drinkSize, stringIngredients, drinkJuiceBase, "no extras", currentDrinkCost];
+        }
+        else{
+            orderItem = [drinkType.value, drinkSize, stringIngredients, drinkMilkBase, stringExtras, currentDrinkCost];
+        }
+        // ADD TO THE ORDER ARRAY (END)
+        order.push(orderItem);
+        // SUM VALUES TO THE ORDER ARRAY
+        for(item in order){
+           subtotalPrice += currentDrinkCost;
+        }
+        var idNo = Math.ceil(Math.random()*10e7); // RESET ORDER NUMBER
+        outputOrderDetails.innerText += `ORDER: ${idNo} \n ${orderItem[0].charAt(0).toUpperCase() + orderItem[0].slice(1)}: ${orderItem[1]} size with ${orderItem[2]}, base made of: ${orderItem[3]} and ${orderItem[4]}. \n \n`;
+        outputItemPrice.innerText += `£${currentDrinkCost.toFixed(2)} \n \n \n \n \n`;
+        outputSubtotalPrice.innerText = `£${subtotalPrice.toFixed(2)}`;
 
-
-
-        // display order details
+        console.log(orderItem); // item order
+        console.log(order); // order ()
+        
+    
+       // display order details
        // console.log(order[0][0]); 
        // console.log(order[0][1]); 
        // arrayIngredients.forEach(element => console.log(element.value));
        // console.log(order[0][3]); 
        // arrayExtra.forEach(element => console.log(element.value));
        // console.log(order[0][5]);
-        
-       //outputItemPrice.innerText = `£${currentDrinkCost.toFixed(2)}`;
-       //outputSubtotalPrice.innerText = `£${subtotalPrice.toFixed(2)}`;
     }
 }
 function PlaceOrder(Event){

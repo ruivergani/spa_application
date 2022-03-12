@@ -243,6 +243,11 @@ button:disabled{
 .place-order button:hover{
     background-color: rgba(255, 255, 255, 0.836);
 }
+p#order-details{
+    max-width: 90% !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
 .final-message{
     margin-top: 20px;
     text-align: center;
