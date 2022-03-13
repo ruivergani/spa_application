@@ -42,16 +42,34 @@ var currentDrinkCost = (sizeCost + extraCost); // currentDrinkPrice
 var directory;
 
 
-// Functions
+// FUNCTION
+function defaultForm(){
+    theForm.reset();
+    milkBases.style.display = "none";
+    juiceBases.style.display = "none";
+    extra.style.display = "none";
+    sizeCost = 2.95;
+    extraCost = 0;
+    currentDrinkCost = 0;
+    currentDrinkCost = (sizeCost + extraCost);
+    outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
+    outputDrinkType.innerText = `Type: `;
+    outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
+    outputDrinkBase.innerText = `Base: `;
+    outputOrderDetails.innerText = ``;
+    outputSubtotalPrice.innerText = ``;
+    outputItemPrice.innerText = ``;
+}
 
-// window load function
+// WINDOW LOAD FUNCTION
 window.addEventListener('load', initialise);
 function initialise(){
-    // initialise none - to avoid user's mistake
+    // DEFAULT VALUES - CHANGE BASED ON TYPE OF DRINK
     milkBases.style.display = "none";
     juiceBases.style.display = "none";
     extra.style.display = "none";
     btnSaveFav.disabled = true;
+    btnPlaceOrder.disabled = true; // PLACE ORDER ONLY WHEN ORDER.LENGTH > 1
     sizeCost = 2.95;
     extraCost = 0;
     currentDrinkCost = 0;
@@ -62,12 +80,12 @@ function initialise(){
     outputDrinkSize.innerText = `Size: ${txtSizeChoice.options[txtSizeChoice.selectedIndex].value.charAt(0).toUpperCase() + txtSizeChoice.options[txtSizeChoice.selectedIndex].value.slice(1)}`;
     outputDrinkBase.innerText = `Base: `;
 }
-// type select option
+// TYPE SELECT OPTION
 function checkDrinkChoice(){
     let checked = theForm.querySelector('input[name=drink]:checked');
     btnSaveFav.disabled = false;
-    outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`; // display type of drink in output current drink
-    // hide/show features
+    outputDrinkType.innerText = `Type: ${checked.value.charAt(0).toUpperCase() + checked.value.slice(1)}`;
+    // HIDE AND SHOW VALUES - CONDITION
     if(this.value == "smoothie"){
         juiceBases.style.display = "block";
         milkBases.style.display = "none";
@@ -90,7 +108,7 @@ function checkDrinkChoice(){
         outputDrinkExtra.innerText = `Extras: `;
     }
 }
-// size select option
+// SIZE SELECT OPTION
 function checkSizeChoice(){
     var size = txtSizeChoice.options[txtSizeChoice.selectedIndex].value; // size select value
     if(size == "small"){
@@ -106,7 +124,7 @@ function checkSizeChoice(){
     outputCurrentPrice.innerText = `£${currentDrinkCost.toFixed(2)}`;
     outputDrinkSize.innerText = `Size: ${size.charAt(0).toUpperCase() + size.slice(1)}`;
 }
-// checkboxes ingredients
+// CHECKBOXES INGREDIENTS
 var listArrayIngredients = [];
 for(var checkbox of txtIngredients){
     checkbox.addEventListener('click', function(){
@@ -121,7 +139,7 @@ for(var checkbox of txtIngredients){
         } 
     })
 }
-// checkboxes extras
+// CHECKBOXES EXTRAS
 var listArrayExtras = [];
 var text = '<p style="padding-top: 0px;padding-bottom: 10px; font-weight: bold;">Extras: </p>';
 for(var checkboxExtra of txtExtra){
@@ -141,7 +159,6 @@ for(var checkboxExtra of txtExtra){
         outputCurrentPrice.innerText = `£${(currentDrinkCost).toFixed(2)}`;
     })
 }
-
 
 // select option base smoothie
 function checkBaseSmoothie(){
@@ -181,6 +198,12 @@ function addOrder(Event){
         }
         // ADD TO THE ORDER ARRAY (END)
         order.push(orderItem);
+        if(order.length >= 1){
+            btnPlaceOrder.disabled = false;
+        }
+        else{
+            btnPlaceOrder.disabled = true;
+        }
         // SUM VALUES TO THE ORDER ARRAY
         for(item in order){
            subtotalPrice += currentDrinkCost;
@@ -189,18 +212,19 @@ function addOrder(Event){
         outputItemPrice.innerText += `£${currentDrinkCost.toFixed(2)} \n \n \n \n \n`;
         // DISPLAY SUBTOTAL PRICE
         outputSubtotalPrice.innerText = `£${subtotalPrice.toFixed(2)}`;
-        // RESET THE FORM TO DEFAULT
+        // SET ALL VALUES TO DEFAULT
         theForm.reset();
-        console.log(orderItem); // item order
-        console.log(order); // order ()
+        milkBases.style.display = "none";
+        juiceBases.style.display = "none";
+        extra.style.display = "none";
     }
 }
 function PlaceOrder(Event){
-    if(theForm.checkValidity()){
-        Event.preventDefault();
-        outputFinalMessage.innerText = `Your order has been received, thumbs up from the restaurant!`;
-        theForm.reset();
-    }
+    // NO VALIDATION - PREVIOUS DONE
+    Event.preventDefault();
+    outputFinalMessage.innerText = `Your order has been received, thumbs up from the restaurant!`;
+    alert("Order received, thumbs up from the restaurant!");
+    defaultForm(); // VALUES TO DEFAULT READY NEXT ORDER
 }
 function saveFavourite(Event){
     if(theForm.checkValidity()){
