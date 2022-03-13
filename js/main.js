@@ -123,7 +123,7 @@ for(var checkbox of txtIngredients){
 }
 // checkboxes extras
 var listArrayExtras = [];
-var text = '<p>Extras: </p>';
+var text = '<p style="padding-top: 0px;padding-bottom: 10px; font-weight: bold;">Extras: </p>';
 for(var checkboxExtra of txtExtra){
     checkboxExtra.addEventListener('click', function(){
         if(this.checked == true){
@@ -168,14 +168,16 @@ function addOrder(Event){
         var drinkMilkBase = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
         var stringExtras = listArrayExtras.toString(); // CONVERT TO STRING TO SHOW
         var subtotalPrice = 0;
-
+        var idNo = Math.ceil(Math.random()*10e7); // RESET ORDER NUMBER
 
         // VALIDATION DEPEDING ON DRINK TYPE
         if(drinkType.value == "smoothie"){
             orderItem = [drinkType.value, drinkSize, stringIngredients, drinkJuiceBase, "no extras", currentDrinkCost];
+            outputOrderDetails.innerText += `ORDER: ${idNo} \n ${orderItem[0].charAt(0).toUpperCase() + orderItem[0].slice(1)}: ${orderItem[1]} size with ${orderItem[2]}, ${orderItem[3]} juice and ${orderItem[4]}. \n \n`;
         }
         else{
             orderItem = [drinkType.value, drinkSize, stringIngredients, drinkMilkBase, stringExtras, currentDrinkCost];
+            outputOrderDetails.innerText += `ORDER: ${idNo} \n ${orderItem[0].charAt(0).toUpperCase() + orderItem[0].slice(1)}: ${orderItem[1]} size with ${orderItem[2]}, ${orderItem[3]} and ${orderItem[4]}. \n \n`;
         }
         // ADD TO THE ORDER ARRAY (END)
         order.push(orderItem);
@@ -183,29 +185,21 @@ function addOrder(Event){
         for(item in order){
            subtotalPrice += currentDrinkCost;
         }
-        var idNo = Math.ceil(Math.random()*10e7); // RESET ORDER NUMBER
-        outputOrderDetails.innerText += `ORDER: ${idNo} \n ${orderItem[0].charAt(0).toUpperCase() + orderItem[0].slice(1)}: ${orderItem[1]} size with ${orderItem[2]}, base made of: ${orderItem[3]} and ${orderItem[4]}. \n \n`;
+        // DISPLAY CURRENT PRICE OF DRINK
         outputItemPrice.innerText += `£${currentDrinkCost.toFixed(2)} \n \n \n \n \n`;
+        // DISPLAY SUBTOTAL PRICE
         outputSubtotalPrice.innerText = `£${subtotalPrice.toFixed(2)}`;
-
+        // RESET THE FORM TO DEFAULT
+        theForm.reset();
         console.log(orderItem); // item order
         console.log(order); // order ()
-        
-    
-       // display order details
-       // console.log(order[0][0]); 
-       // console.log(order[0][1]); 
-       // arrayIngredients.forEach(element => console.log(element.value));
-       // console.log(order[0][3]); 
-       // arrayExtra.forEach(element => console.log(element.value));
-       // console.log(order[0][5]);
     }
 }
 function PlaceOrder(Event){
     if(theForm.checkValidity()){
         Event.preventDefault();
         outputFinalMessage.innerText = `Your order has been received, thumbs up from the restaurant!`;
-        // theForm.reset();
+        theForm.reset();
     }
 }
 function saveFavourite(Event){

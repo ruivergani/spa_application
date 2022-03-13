@@ -86,7 +86,7 @@ header .container nav{
 }
 .monkey-bar .container .drink-selection{
     width: 100%;
-    max-width: 76.8rem;
+    max-width: 75rem;
     background-color: var(--bg-light);
     padding: 7rem 3rem 5rem 3.2rem;
 }
@@ -168,10 +168,10 @@ button:disabled{
 }
 .monkey-bar .container .order-selection{
     width: 100%;
-    max-width: 49rem;
+    max-width: 55rem;
     background-color: #1e6900e7;
-    padding: 7rem 3.2rem 10rem 3.2rem;
-    height: 110.5rem;
+    padding: 7rem 2rem 2rem 3rem;
+    min-height: 100vh;
 }
 .monkey-bar .container .order-selection{
     color: white;
@@ -212,6 +212,13 @@ button:disabled{
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    background-color: var(--text-dark);
+    padding: 0px 15px 0px 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
 }
 .output-area .order-status p#order-details{
     width: 100%;
@@ -244,7 +251,7 @@ button:disabled{
     background-color: rgba(255, 255, 255, 0.836);
 }
 p#order-details{
-    max-width: 90% !important;
+    max-width: 80% !important;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
