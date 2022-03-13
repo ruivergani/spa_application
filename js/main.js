@@ -39,7 +39,6 @@ idNumber.innerText = `${idNo}`;
 var sizeCost = 0;
 var extraCost = 0;
 var currentDrinkCost = (sizeCost + extraCost); // currentDrinkPrice
-var directory;
 
 
 // FUNCTION
@@ -60,7 +59,6 @@ function defaultForm(){
     outputSubtotalPrice.innerText = ``;
     outputItemPrice.innerText = ``;
 }
-
 // WINDOW LOAD FUNCTION
 window.addEventListener('load', initialise);
 function initialise(){
@@ -226,16 +224,65 @@ function PlaceOrder(Event){
     alert("Order received, thumbs up from the restaurant!");
     defaultForm(); // VALUES TO DEFAULT READY NEXT ORDER
 }
+// REFERENCE TO DIRECTORY (LOCAL STORAGE)
+var directory = [];
+function loadDirectory(){
+    if("directory" in localStorage){
+        directory = JSON.parse(localStorage.getItem("directory")); // get directory from storage and convert to JSON
+        showEntries(); // call function
+    }
+    else{
+        directory = []; // array
+    }
+}
+// FUNCTION TO DISPLAY DIRECTORY LOCAL STORAGE
+function showEntries(){
+    console.lo
+}
 function saveFavourite(Event){
     if(theForm.checkValidity()){
         Event.preventDefault();
-        console.log("Save Favourite");
+        // collect all values into an array
+        var drinkType = theForm.querySelector('input[name=drink]:checked');
+        var drinkSize = txtSizeChoice.options[txtSizeChoice.selectedIndex].value;
+        var stringIngredients = listArrayIngredients.toString(); // CONVERT TO STRING TO SHOW
+        var drinkJuiceBase = txtBaseSmoothie.options[txtBaseSmoothie.selectedIndex].value;
+        var drinkMilkBase = txtBaseMilkshake.options[txtBaseMilkshake.selectedIndex].value;
+        var stringExtras = listArrayExtras.toString(); // CONVERT TO STRING TO SHOW
+        var subtotalPrice = 0;
+        var idNo = Math.ceil(Math.random()*10e7); // RESET ORDER NUMBER
+        // VALIDATION DEPEDING ON DRINK TYPE
+        if(drinkType.value == "smoothie"){
+            orderItem = [drinkType.value, drinkSize, stringIngredients, drinkJuiceBase, "no extras", currentDrinkCost];
+            var entry = {
+                "type" : drinkType.value,
+                "size" : drinkSize,
+                "ingredients" : stringIngredients,
+                "bases" : drinkJuiceBase,
+                "extras" : "no extras",
+                "cost" : currentDrinkCost
+            }
+        }
+        else{
+            orderItem = [drinkType.value, drinkSize, stringIngredients, drinkMilkBase, stringExtras, currentDrinkCost];
+            var entry = {
+                "type" : drinkType.value,
+                "size" : drinkSize,
+                "ingredients" : stringIngredients,
+                "bases" : drinkMilkBase,
+                "extras" : stringExtras,
+                "cost" : currentDrinkCost
+            }
+        }
+        directory.push(entry); // add directory object to array
+        localStorage.clear();
+        localStorage.setItem("directory", JSON.stringify(directory));
     } 
 }
 function orderFavourite(Event){
     if(theForm.checkValidity()){
         Event.preventDefault();
-        console.log("Order Favourite");
+        console.log("Order Favourite retrieve data from local storage.");
     }
 }
 
