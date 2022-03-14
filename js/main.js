@@ -67,6 +67,7 @@ function initialise(){
     juiceBases.style.display = "none";
     extra.style.display = "none";
     btnSaveFav.disabled = true;
+    btnOrderFav.disabled = localStorage.length == 0;
     btnPlaceOrder.disabled = true; // PLACE ORDER ONLY WHEN ORDER.LENGTH > 1
     sizeCost = 2.95;
     extraCost = 0;
@@ -196,7 +197,7 @@ function addOrder(Event){
         }
         // ADD TO THE ORDER ARRAY (END)
         order.push(orderItem);
-        if(order.length >= 1){
+        if(order.length >= 1 || localStorage.length >= 1){
             btnPlaceOrder.disabled = false;
         }
         else{
@@ -227,6 +228,7 @@ function PlaceOrder(Event){
 // REFERENCE TO DIRECTORY (LOCAL STORAGE)
 var directory = [];
 function loadDirectory(){
+
     if("directory" in localStorage){
         directory = JSON.parse(localStorage.getItem("directory")); // get directory from storage and convert to JSON
         showEntries(); // call function
@@ -239,7 +241,7 @@ function loadDirectory(){
 function showEntries(){
     outputOrderDetails.innerText = ""; // clear txtOutput field
     for(let i = 0; i < directory.length; i++){
-        outputOrderDetails.innerText += "ORDER:" + directory[i].type + "\t" + directory[i].size + "\t" + directory[i].ingredients + "\t" + directory[i].bases + "\t" + directory[i].extras + "\t" + directory[i].cost + "\n";
+        outputOrderDetails.innerText += "ORDER: " + directory[i].type + "\t" + directory[i].size + "\t" + directory[i].ingredients + "\t" + directory[i].bases + "\t" + directory[i].extras + "\t" + "£"+directory[i].cost + "\n \n";
     }
 }
 function saveFavourite(Event){
@@ -284,7 +286,9 @@ function saveFavourite(Event){
     } 
 }
 function orderFavourite(Event){
+    Event.preventDefault();
     loadDirectory(); // CALLING THE FUNCTION WHEN BUTTON IS PRESSED
+    btnPlaceOrder.disabled = false;
 }
 
 // add events to listen for checkbox, selection, input and radio buttons
