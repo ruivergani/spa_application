@@ -39,7 +39,7 @@ idNumber.innerText = `${idNo}`;
 var sizeCost = 0;
 var extraCost = 0;
 var currentDrinkCost = (sizeCost + extraCost); // currentDrinkPrice
-
+var directory = [];
 
 // FUNCTION
 function defaultForm(){
@@ -237,7 +237,10 @@ function loadDirectory(){
 }
 // FUNCTION TO DISPLAY DIRECTORY LOCAL STORAGE
 function showEntries(){
-    console.lo
+    outputOrderDetails.innerText = ""; // clear txtOutput field
+    for(let i = 0; i < directory.length; i++){
+        outputOrderDetails.innerText += "ORDER:" + directory[i].type + "\t" + directory[i].size + "\t" + directory[i].ingredients + "\t" + directory[i].bases + "\t" + directory[i].extras + "\t" + directory[i].cost + "\n";
+    }
 }
 function saveFavourite(Event){
     if(theForm.checkValidity()){
@@ -276,14 +279,12 @@ function saveFavourite(Event){
         }
         directory.push(entry); // add directory object to array
         localStorage.clear();
-        localStorage.setItem("directory", JSON.stringify(directory));
+        localStorage.setItem("directory", JSON.stringify(directory)); // convert to string when storing
+        alert("Order favorite has been saved.");
     } 
 }
 function orderFavourite(Event){
-    if(theForm.checkValidity()){
-        Event.preventDefault();
-        console.log("Order Favourite retrieve data from local storage.");
-    }
+    loadDirectory(); // CALLING THE FUNCTION WHEN BUTTON IS PRESSED
 }
 
 // add events to listen for checkbox, selection, input and radio buttons
