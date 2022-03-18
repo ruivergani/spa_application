@@ -59,6 +59,9 @@ function defaultForm(){
     outputSubtotalPrice.innerText = ``;
     outputItemPrice.innerText = ``;
 }
+function checkInput(){ // validate any input that needs to be disabled
+    btnOrderFav.disabled = localStorage.length == 0;
+}
 // WINDOW LOAD FUNCTION
 window.addEventListener('load', initialise);
 function initialise(){
